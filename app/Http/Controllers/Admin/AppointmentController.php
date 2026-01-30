@@ -219,24 +219,21 @@ class AppointmentController extends Controller
                 if ($term->status == 'OPEN') {
                     $con .= "selected";
                 }
-                $con .= ">OPEN</option>";
+                $con .= ">" . __('frontend.open') . "</option>";
 
                 //for CANCEL BY CLIENT status
-
                 $con .= "<option value='CANCEL BY CLIENT'";
                 if ($term->status == 'CANCEL BY CLIENT') {
                     $con .= "selected";
                 }
-                $con .= ">CANCEL BY CLIENT</option>";
-
+                $con .= ">" . __('frontend.cancel_by_client') . "</option>";
 
                 //for CANCEL BY ADVOCATE status
                 $con .= "<option value='CANCEL BY ADVOCATE'";
                 if ($term->status == 'CANCEL BY ADVOCATE') {
                     $con .= "selected";
                 }
-                $con .= ">CANCEL BY ADVOCATE</option>";
-
+                $con .= ">" . __('frontend.cancel_by_advocate') . "</option>";
 
                 $con .= "</select>";
 

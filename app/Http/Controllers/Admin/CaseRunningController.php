@@ -384,16 +384,16 @@ class CaseRunningController extends Controller
                     $nestedData['name'] = '<div style="font-size:15px;" class="clinthead text-primary">
                        <a  class="text-primary" href="javascript:void(0);" onclick="change_case_important(' . $case->case_id . ')"><i class="text-primary ' . $class . '" aria-hidden="true"></i></a>'
                         . '&nbsp;<a  class="text-primary" href="' . $show . '">' . $case->case_number . '</a></div>
-                                        <p class="clinttittle">Case: <b>' . $case->caseType . '</b></p>';
+                                        <p class="clinttittle">' . __('frontend.case') . ': <b>' . $case->caseType . '</b></p>';
                 } else {
                     $nestedData['name'] = '<div style="font-size:15px;"  class="clinthead text-primary"><a class="text-primary" href="javascript:void(0);" ><i class="text-primary ' . $class . '" aria-hidden="true"></i></a>'
                         . '&nbsp;<a  class="text-primary" href="' . $show . '">' . $case->case_number . '</a></div>
-                                        <p class="clinttittle">Case: <b>' . $case->caseType . '</b></p>';
+                                        <p class="clinttittle">' . __('frontend.case') . ': <b>' . $case->caseType . '</b></p>';
                 }
 
 
-                $nestedData['court'] = '<p class="currenttittle">Court :<b> ' . $case->court_name . '</b></p>
-                                        <p class="currenttittle">No:<b> ' . $case->court_no . '</b></p>
+                $nestedData['court'] = '<p class="currenttittle">' . __('frontend.court') . ' :<b> ' . $case->court_name . '</b></p>
+                                        <p class="currenttittle">' . __('frontend.no') . ':<b> ' . $case->court_no . '</b></p>
                                         <p class="currenttittle">' . __('frontend.magistrate') . ' :<b> ' . $case->judge_name . '</b></p>';
 
                 $nestedData['case'] = '<p class="currenttittle">' . $first . ' <br/><b>VS</b> <br/> ' . $second . '<p>';

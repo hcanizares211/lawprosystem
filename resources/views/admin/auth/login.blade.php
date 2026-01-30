@@ -52,13 +52,13 @@
 
                         {{-- Language switcher as a simple list item --}}
                         <li class="language-switcher-item-simple">
-                            @if ($current_locale == 'ar')
+                            @if ($current_locale == 'es')
                                 <a href="{{ route('language.switch', 'en') }}">
                                     <i class="fa fa-globe"></i> English
                                 </a>
                             @else
-                                <a href="{{ route('language.switch', 'ar') }}">
-                                    <i class="fa fa-globe"></i> العربية
+                                <a href="{{ route('language.switch', 'es') }}">
+                                    <i class="fa fa-globe"></i> Español
                                 </a>
                             @endif
                         </li>

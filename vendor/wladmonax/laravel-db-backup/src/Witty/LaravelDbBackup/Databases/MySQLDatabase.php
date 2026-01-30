@@ -53,7 +53,7 @@ class MySQLDatabase implements DatabaseContract
      */
     public function dump($destinationFile)
     {
-        $command = sprintf('%smysqldump --user=%s --password=%s --host=%s --port=%s %s --ignore-table='.$this->database.'.admins --ignore-table='.$this->database.'.admin_role --ignore-table='.$this->database.'.cities --ignore-table='.$this->database.'.countries --ignore-table='.$this->database.'.states --ignore-table='.$this->database.'.zone --ignore-table='.$this->database.'.permissions --ignore-table='.$this->database.'.permission_role --ignore-table='.$this->database.'.roles > %s',
+        $command = sprintf('%smysqldump --user=%s --password=%s --host=%s --port=%s %s > %s',
             $this->getDumpCommandPath(),
             escapeshellarg($this->user),
             escapeshellarg($this->password),
@@ -74,7 +74,7 @@ class MySQLDatabase implements DatabaseContract
      */
     public function restore($sourceFile)
     {
-        $command = sprintf('%smysql --user=%s --password=%s --host=%s --port=%s %s  < %s',
+        $command = sprintf('%smysql --user=%s --password=%s --host=%s --port=%s %s < %s',
             $this->getRestoreCommandPath(),
             escapeshellarg($this->user),
             escapeshellarg($this->password),

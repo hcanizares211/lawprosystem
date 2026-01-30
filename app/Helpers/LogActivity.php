@@ -283,7 +283,7 @@ class LogActivity
 			$html .='<li>
 						<a href="'.url('admin/case-running/').'">
 							<div class="text-center link-block">
-								<strong>View All Task </strong> &nbsp; <i class="fa fa-angle-right"></i>
+								<strong>'.__('frontend.view_all_tasks').'</strong> &nbsp; <i class="fa fa-angle-right"></i>
 							</div>
 						</a>
 

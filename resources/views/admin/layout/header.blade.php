@@ -44,13 +44,13 @@
 
                 {{-- ===== START: Improved Language Switcher ===== --}}
                 <li class="language-switcher-item-simple">
-                    @if ($current_locale == 'ar')
+                    @if ($current_locale == 'es')
                         <a href="{{ route('language.switch', 'en') }}">
                             <i class="fa fa-globe"></i>&nbsp; English
                         </a>
                     @else
-                        <a href="{{ route('language.switch', 'ar') }}">
-                            <i class="fa fa-globe"></i>&nbsp; العربية
+                        <a href="{{ route('language.switch', 'es') }}">
+                            <i class="fa fa-globe"></i>&nbsp; Español
                         </a>
                     @endif
                 </li>

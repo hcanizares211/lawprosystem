@@ -211,7 +211,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::post('service/status', 'ServiceController@changeStatus')->name('service.status');
 });
 
-
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'AdminAuth\LoginController@login');
@@ -228,7 +227,7 @@ Route::group(['prefix' => 'admin'], function () {
     
 
 Route::get('/language/{locale}', function ($locale) {
-    if (!in_array($locale, ['en', 'ar'])) {
+    if (!in_array($locale, ['en', 'es', 'ar'])) {
         abort(400, 'Unsupported language.');
     }
     Session::put('locale', $locale);

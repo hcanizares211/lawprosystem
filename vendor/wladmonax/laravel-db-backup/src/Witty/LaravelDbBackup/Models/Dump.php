@@ -35,8 +35,4 @@ class Dump extends Model
         'file', 'file_name', 'prefix', 'encrypted', 'created_at'
     ];
 
-    public function setCreatedAtAttribute( $value ) {
-  $this->attributes['created_at'] = date("Y-m-d H:i:s A");
-}
-
 }

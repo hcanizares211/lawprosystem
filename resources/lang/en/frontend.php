@@ -597,6 +597,8 @@ return [
         'action' => 'Note',
     ],
 
-
-
+    'view_all_tasks' => 'View All Tasks',
+    'open' => 'Open',
+    'cancel_by_client' => 'Cancelled by Client',
+    'cancel_by_advocate' => 'Cancelled by Advocate',
 ];

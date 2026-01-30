@@ -70,12 +70,14 @@ class Controller extends BaseController
     public function getStateByCountry(Request $request)
     {
         $records = DB::table('states')->where('country_id', $request->id)->get();
-        return view('admin.include.modal_get_option', ['records' => $records]);
+        return response()->view('admin.include.modal_get_option', ['records' => $records])
+            ->header('Content-Type', 'text/html; charset=utf-8');
     }
     public function getCitiesByState(Request $request)
     {
         $records = DB::table('cities')->where('state_id', $request->id)->get();
-        return view('admin.include.modal_get_option', ['records' => $records]);
+        return response()->view('admin.include.modal_get_option', ['records' => $records])
+            ->header('Content-Type', 'text/html; charset=utf-8');
     }
 
     public function getCaseSubType(Request $request)
