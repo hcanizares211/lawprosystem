@@ -2,6 +2,117 @@
 @section('title', 'Dashboard')
 @section('content')
 
+<style>
+.dashboard-card {
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.dashboard-card:hover {
+    text-decoration: none;
+    transform: translateY(-5px);
+}
+
+.tile-stats {
+    position: relative;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-height: 160px;
+}
+
+.dashboard-card:hover .tile-stats {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.tile-stats .icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 65px;
+    opacity: 0.15;
+}
+
+.tile-stats .icon i {
+    display: block;
+}
+
+.tile-stats .count {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.tile-stats h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 8px 0;
+    color: #34495e;
+    text-transform: capitalize;
+}
+
+.tile-stats p {
+    font-size: 13px;
+    margin: 0;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.tile-stats p i {
+    font-size: 14px;
+}
+
+.page-title {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.page-title h3 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.page-title h3 i {
+    color: #3498db;
+}
+
+.x_panel {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.x_panel:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.x_title {
+    border-bottom: 2px solid #ecf0f1;
+    padding: 20px;
+}
+
+.x_title h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.x_content {
+    padding: 20px;
+}
+</style>
 
     @if ($adminHasPermition->can(['dashboard_list']))
 
@@ -15,78 +126,63 @@
                 <div class="title_left">
                     <h3><i class="fa fa-tachometer"></i>&nbsp;&nbsp;{{ __('frontend.dashboard.dashboard') }}</h3>
                 </div>
-
-
             </div>
 
             <div class="clearfix"></div>
 
             <div class="row">
-                <a href="{{ route('clients.index') }}">
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <a href="{{ route('clients.index') }}" class="dashboard-card animated flipInY">
                         <div class="tile-stats" style="background-color: #E3F2FD">
-                            <div class="icon"><i class="fa fa-users"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-users"></i></div>
                             <div class="count">{{ $client ?? '' }}</div>
                             <h3>{{ __('frontend.dashboard.clients') }}</h3>
-                            <p>{{ __('frontend.dashboard.total_clients') }} &nbsp;<i class="fa fa-rocket"></i></p>
+                            <p>{{ __('frontend.dashboard.total_clients') }}</p>
                         </div>
-                    </div>
-                </a>
-                <a href="{{ route('case-running.index') }}">
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <a href="{{ route('case-running.index') }}" class="dashboard-card animated flipInY">
                         <div class="tile-stats" style="background-color: #D6EAF8">
-                            <div class="icon"><i class="fa fa-gavel"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-gavel"></i></div>
                             <div class="count">{{ $case_total ?? '' }}</div>
                             <h3>{{ __('frontend.dashboard.cases') }}</h3>
-                            <p>{{ __('frontend.dashboard.total_cases') }} &nbsp;<i class="fa fa-rocket"></i></p>
+                            <p>{{ __('frontend.dashboard.total_cases') }}</p>
                         </div>
-                    </div>
-                </a>
-                <a href="{{ url('admin/case-important') }}">
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <a href="{{ url('admin/case-important') }}" class="dashboard-card animated flipInY">
                         <div class="tile-stats" style="background-color: #FFF3CD">
-                            <div class="icon"><i class="fa fa-star"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-star"></i></div>
                             <div class="count">{{ $important_case ?? '' }}</div>
                             <h3>{{ __('frontend.dashboard.important_cases') }}</h3>
-                            <p>{{ __('frontend.dashboard.total_important_cases') }} &nbsp;<i class="fa fa-rocket"></i></p>
+                            <p>{{ __('frontend.dashboard.total_important_cases') }}</p>
                         </div>
-                    </div>
-                </a>
-                <a href="{{ url('admin/case-archived') }}">
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <a href="{{ url('admin/case-archived') }}" class="dashboard-card animated flipInY">
                         <div class="tile-stats" style="background-color: #D4EDDA">
-                            <div class="icon"><i class="fa fa-file-archive-o"></i>
-                            </div>
+                            <div class="icon"><i class="fa fa-file-archive-o"></i></div>
                             <div class="count">{{ $archived_total }}</div>
                             <h3>{{ __('frontend.dashboard.archived_cases') }}</h3>
-                            <p>{{ __('frontend.dashboard.total_completed_cases') }} &nbsp;<i class="fa fa-rocket"></i></p>
+                            <p>{{ __('frontend.dashboard.total_completed_cases') }}</p>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>{{ __('frontend.dashboard.case_board') }} </h2>
-                            &nbsp;&nbsp;
-                            {{-- @if ($totalCaseCount > 0)
-                                <a href="javascript:void(0);" onClick="downloadCaseBorad()" title="Download case board"><i
-                                        class="fa fa-download fa-2x"></i></a>
-                                &nbsp;
-                                <a href="javascript:void(0);" onClick="printCaseBorad()" title="Print case board"
-                                    target="_blank"><i class="fa fa-print fa-2x"></i></a>
-                            @endif --}}
-
-                            <div class="col-md-3 col-sm-12 col-xs-12 pull-right">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="text" name="client_case" id="client_case" class="form-control  datecase"
-                                        readonly=""
+                            <h2><i class="fa fa-list-alt"></i> {{ __('frontend.dashboard.case_board') }}</h2>
+                            <div class="col-md-3 col-sm-12 col-xs-12 pull-right" style="padding: 0;">
+                                <div class="input-group" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden;">
+                                    <span class="input-group-addon" style="background: #3498db; color: white; border: none;"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" name="client_case" id="client_case" class="form-control datecase"
+                                        readonly="" style="border: none;"
                                         value="{{ $date != '' ? date($date_format_laravel, strtotime($date)) : date($date_format_laravel) }}">
                                 </div>
                             </div>
@@ -96,16 +192,21 @@
                             @if ($totalCaseCount > 0)
                                 @if (count($case_dashbord) > 0 && !empty($case_dashbord))
                                     @foreach ($case_dashbord as $court)
-                                        <h4 class="title text-primary"> {!! $court['judge_name'] !!}</h4>
-                                        <table id="case_list" class="table row-border" style="width:100%">
+                                        <div style="margin-bottom: 25px; padding: 15px; background: #f8f9fa; border-left: 4px solid #3498db; border-radius: 6px;">
+                                            <h4 class="text-primary" style="margin: 0; font-weight: 600;">
+                                                <i class="fa fa-gavel"></i> {!! $court['judge_name'] !!}
+                                            </h4>
+                                        </div>
+                                        <div style="overflow-x: auto; margin-bottom: 30px;">
+                                        <table id="case_list" class="table table-hover" style="width:100%; border-collapse: separate; border-spacing: 0;">
                                             <thead>
-                                                <tr>
-                                                    <th width="3%">{{ __('frontend.dashboard.tc_no') }}</th>
-                                                    <th width="20%">{{ __('frontend.dashboard.tc_case_no') }}</th>
-                                                    <th width="35%">{{ __('frontend.dashboard.tc_case') }}</th>
-                                                    <th width="15%">{{ __('frontend.dashboard.tc_next_date') }}</th>
-                                                    <th width="10%">{{ __('frontend.dashboard.tc_Status') }}</th>
-                                                    <th width="17%" style="text-align: center;">
+                                                <tr style="background: #2c3e50; color: white;">
+                                                    <th width="3%" style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.tc_no') }}</th>
+                                                    <th width="20%" style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.tc_case_no') }}</th>
+                                                    <th width="35%" style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.tc_case') }}</th>
+                                                    <th width="15%" style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.tc_next_date') }}</th>
+                                                    <th width="10%" style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.tc_Status') }}</th>
+                                                    <th width="17%" style="text-align: center; padding: 15px 10px; font-weight: 600; border: none;">
                                                         {{ __('frontend.dashboard.tc_action') }}</th>
                                                 </tr>
                                             </thead>
@@ -142,76 +243,90 @@
                                                             @endphp
                                                         @endif
 
-                                                        <tr>
-                                                            <td>{{ $key + 1 }}</td>
-                                                            <td><span
-                                                                    class="text-primary">{{ $value->registration_number }}</span><br /><small>{{ $value->caseSubType != '' ? $value->caseSubType : $value->caseType }}</small>
+                                                        <tr style="border-bottom: 1px solid #ecf0f1; transition: all 0.2s ease;">
+                                                            <td style="padding: 15px 10px; vertical-align: middle; font-weight: 600;">{{ $key + 1 }}</td>
+                                                            <td style="padding: 15px 10px; vertical-align: middle;">
+                                                                <span class="text-primary" style="font-weight: 600; font-size: 14px;">{{ $value->registration_number }}</span>
+                                                                <br /><small style="background: #ecf0f1; padding: 2px 8px; border-radius: 4px; font-size: 11px;">{{ $value->caseSubType != '' ? $value->caseSubType : $value->caseType }}</small>
                                                             </td>
-                                                            <td>
-                                                                {!! $first !!}
-                                                                <br /><b>{{ __('frontend.vs') }}</b><br />
-                                                                {!! $second !!}
+                                                            <td style="padding: 15px 10px; vertical-align: middle; line-height: 1.6;">
+                                                                <div style="margin-bottom: 5px;">{!! $first !!}</div>
+                                                                <div style="text-align: center; margin: 5px 0;">
+                                                                    <span style="background: #3498db; color: white; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">{{ __('frontend.vs') }}</span>
+                                                                </div>
+                                                                <div style="margin-top: 5px;">{!! $second !!}</div>
                                                             </td>
-                                                            <td>
+                                                            <td style="padding: 15px 10px; vertical-align: middle;">
                                                                 @if ($value->hearing_date != '')
-                                                                    {{ date($date_format_laravel, strtotime($value->hearing_date)) }}
+                                                                    <span style="background: #d4edda; padding: 5px 10px; border-radius: 6px; font-weight: 600; color: #155724;">
+                                                                        <i class="fa fa-calendar"></i> {{ date($date_format_laravel, strtotime($value->hearing_date)) }}
+                                                                    </span>
                                                                 @else
-                                                                    <span
-                                                                        class="blink_me text-danger">{{ __('frontend.dashboard.date_not_update') }}</span>
+                                                                    <span class="blink_me" style="background: #f8d7da; color: #721c24; padding: 5px 10px; border-radius: 6px; font-weight: 600;">
+                                                                        <i class="fa fa-exclamation-triangle"></i> {{ __('frontend.dashboard.date_not_update') }}
+                                                                    </span>
                                                                 @endif
                                                             </td>
-                                                            <td>{{ $value->case_status_name }}</td>
-                                                            <td>
-                                                                <ul class="padding-bottom-custom" style="list-style: none;">
+                                                            <td style="padding: 15px 10px; vertical-align: middle;">
+                                                                <span style="background: #e3f2fd; color: #1976d2; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                                                                    {{ $value->case_status_name }}
+                                                                </span>
+                                                            </td>
+                                                            <td style="padding: 15px 10px; vertical-align: middle;">
+                                                                <div style="display: flex; flex-direction: column; gap: 8px;">
                                                                     @if ($adminHasPermition->can(['case_edit']) == '1')
-                                                                        <li style="text-align:left"><a class=""
-                                                                                href="javascript:void(0);"
-                                                                                onclick="nextDateAdd('{{ $value->case_id }}');"><i
-                                                                                    class="fa fa-calendar-plus-o"></i>
-                                                                                &nbsp;&nbsp;{{ __('frontend.dashboard.ac_next_date') }}</a>
-                                                                        </li>
-                                                                        <li style="text-align:left"><a class=""
-                                                                                href="javascript:void(0);"
-                                                                                onClick="transfer_case('{{ $value->case_id }}');"><i
-                                                                                    class="fa fa-gavel"></i> &nbsp;
-                                                                                {{ __('frontend.dashboard.transfer') }}</a>
-                                                                        </li>
+                                                                        <a href="javascript:void(0);" onclick="nextDateAdd('{{ $value->case_id }}');" 
+                                                                           style="display: inline-flex; align-items: center; padding: 6px 12px; background: #3498db; color: white; border-radius: 6px; text-decoration: none; font-size: 13px; transition: all 0.2s;">
+                                                                            <i class="fa fa-calendar-plus-o" style="margin-right: 5px;"></i>
+                                                                            {{ __('frontend.dashboard.ac_next_date') }}
+                                                                        </a>
+                                                                                                <a href="javascript:void(0);" onClick="transfer_case('{{ $value->case_id }}');" 
+                                                                                                    style="display: inline-flex; align-items: center; padding: 6px 12px; background: #2c3e50; color: white; border-radius: 6px; text-decoration: none; font-size: 13px; transition: all 0.2s;">
+                                                                            <i class="fa fa-gavel" style="margin-right: 5px;"></i>
+                                                                            {{ __('frontend.dashboard.transfer') }}
+                                                                        </a>
                                                                     @endif
-
-
-                                                                </ul>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
                                             </tbody>
                                         </table>
+                                        </div>
                                     @endforeach
                                 @endif
                             @elseif($case_total > 0 && count($case_dashbord) == 0)
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="customers-space">
-                                            <p class="customers-tittle text-center">
-                                                {{ __('frontend.dashboard.today_no_case_board') }}</p>
+                                        <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px;">
+                                            <i class="fa fa-calendar-o" style="font-size: 80px; color: #bdc3c7; margin-bottom: 20px;"></i>
+                                            <p style="font-size: 18px; color: #7f8c8d; font-weight: 500;">
+                                                {{ __('frontend.dashboard.today_no_case_board') }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             @else
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="col-md-6">
-                                            <div class="customers-space">
-                                                <h4 class="customers-heading">
-                                                    {{ __('frontend.dashboard.manage_your_case') }}</h4>
-                                                <p class="customers-tittle">
-                                                    {{ __('frontend.dashboard.maintain_complete_case_details') }}</p>
-                                                <div class="cst-btn">
-                                                    <div class="top-btns" style="text-align: left;">
-                                                        <a class="btn btn-info"
-                                                            href="{{ url('admin/case-running/create') }}">
-                                                            {{ __('frontend.dashboard.add_case') }}</a>
-                                                    </div>
+                                        <div style="background: #2c3e50; border-radius: 12px; padding: 50px 40px; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <h4 style="font-size: 28px; font-weight: 700; margin-bottom: 15px; color: white;">
+                                                        <i class="fa fa-briefcase"></i> {{ __('frontend.dashboard.manage_your_case') }}
+                                                    </h4>
+                                                    <p style="font-size: 16px; line-height: 1.6; margin-bottom: 25px; color: rgba(255,255,255,0.9);">
+                                                        {{ __('frontend.dashboard.maintain_complete_case_details') }}
+                                                    </p>
+                                                                     <a href="{{ url('admin/case-running/create') }}" 
+                                                                         style="display: inline-block; background: white; color: #2c3e50; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                                                        <i class="fa fa-plus-circle"></i> {{ __('frontend.dashboard.add_case') }}
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-4" style="display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fa fa-gavel" style="font-size: 120px; opacity: 0.2;"></i>
+                                                </div>                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,61 +339,71 @@
                                 </div>
                             @endif
 
-
                         </div>
                     </div>
                 </div>
             </div>
+
             <br>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>{{ __('frontend.dashboard.appointment') }}</h2>
-                            <div class="col-md-3 col-sm-12 col-xs-12 pull-right">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="text" name="appoint_range" id="appoint_range" class="form-control"
+                            <h2><i class="fa fa-clock-o"></i> {{ __('frontend.dashboard.appointment') }}</h2>
+                            <div class="col-md-3 col-sm-12 col-xs-12 pull-right" style="padding: 0;">
+                                <div class="input-group" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden;">
+                                    <span class="input-group-addon" style="background: #e74c3c; color: white; border: none;"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" name="appoint_range" id="appoint_range" class="form-control" style="border: none;"
                                         value="{{ date($date_format_laravel) }}" readonly="">
                                 </div>
                             </div>
-
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             @if (count($appoint_calander) > 0)
-                                <table id="appointment_list" class="table row-border" style="width:100%">
+                                <div style="overflow-x: auto;">
+                                <table id="appointment_list" class="table table-hover" style="width:100%; border-collapse: separate; border-spacing: 0;">
                                     <thead>
-                                        <tr>
-                                            <th>{{ __('frontend.dashboard.ta_no') }}</th>
-                                            <th>{{ __('frontend.dashboard.ta_client_name') }}</th>
-                                            <th>{{ __('frontend.dashboard.ta_date') }}</th>
-                                            <th>{{ __('frontend.dashboard.ta_time') }}</th>
+                                        <tr style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                                            <th style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.ta_no') }}</th>
+                                            <th style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.ta_client_name') }}</th>
+                                            <th style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.ta_date') }}</th>
+                                            <th style="padding: 15px 10px; font-weight: 600; border: none;">{{ __('frontend.dashboard.ta_time') }}</th>
                                         </tr>
                                     </thead>
                                 </table>
+                                </div>
                             @elseif($appointmentCount > 0 && count($appoint_calander) == 0)
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="customers-space">
-                                            <p class="customers-tittle text-center">
-                                                {{ __('frontend.dashboard.today_no_appointment') }}</p>
+                                        <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 12px;">
+                                            <i class="fa fa-calendar-times-o" style="font-size: 80px; color: #e67e22; margin-bottom: 20px; opacity: 0.7;"></i>
+                                            <p style="font-size: 18px; color: #7f8c8d; font-weight: 500;">
+                                                {{ __('frontend.dashboard.today_no_appointment') }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             @else
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="col-md-6">
-                                            <div class="customers-space">
-                                                <h4 class="customers-heading">
-                                                    {{ __('frontend.dashboard.manage_your_appointment') }}</h4>
-                                                <p class="customers-tittle">
-                                                    {{ __('frontend.dashboard.appointment_with_advocates') }}</p>
-                                                <div class="cst-btn">
-                                                    <div class="top-btns" style="text-align: left;">
-                                                        <a class="btn btn-info"
-                                                            href="{{ url('admin/appointment/create') }}">
+                                        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 12px; padding: 50px 40px; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <h4 style="font-size: 28px; font-weight: 700; margin-bottom: 15px; color: white;">
+                                                        <i class="fa fa-calendar-check-o"></i> {{ __('frontend.dashboard.manage_your_appointment') }}
+                                                    </h4>
+                                                    <p style="font-size: 16px; line-height: 1.6; margin-bottom: 25px; color: rgba(255,255,255,0.9);">
+                                                        {{ __('frontend.dashboard.appointment_with_advocates') }}
+                                                    </p>
+                                                    <a href="{{ url('admin/appointment/create') }}" 
+                                                       style="display: inline-block; background: white; color: #f5576c; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                                                        <i class="fa fa-plus-circle"></i> {{ __('frontend.dashboard.add_appointment') }}
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-4" style="display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fa fa-clock-o" style="font-size: 120px; opacity: 0.2;"></i>
+                                                </div>                                                            href="{{ url('admin/appointment/create') }}">
                                                             {{ __('frontend.dashboard.add_appointment') }} </a>
                                                     </div>
                                                 </div>
@@ -299,29 +424,18 @@
                 </div>
 
 
-            </div>
-
-            <br>
-
-
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>{{ __('frontend.dashboard.Calendar') }}</h2>
-                            <div class="col-md-3 col-sm-12 col-xs-12 pull-right">
-                                <div class="input-group">
-
-                                </div>
-                            </div>
-
+                            <h2><i class="fa fa-calendar"></i> {{ __('frontend.dashboard.Calendar') }}</h2>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content">
-                            <div id="calendar_dashbors_case"></div>
-
-
+                        <div class="x_content" style="padding: 25px;">
+                            <div id="calendar_dashbors_case" style="background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);"></div>
                         </div>
+                    </div>
+                </div>                        </div>
                     </div>
                 </div>
 
@@ -388,5 +502,6 @@
 @push('js')
     <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/moment.min.js'></script>
     <script src="{{ asset('assets/admin/vendors/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendors/fullcalendar/dist/lang/es.js') }}"></script>
     <script src="{{ asset('assets/js/dashbord/dashbord-datatable.js') }}"></script>
 @endpush

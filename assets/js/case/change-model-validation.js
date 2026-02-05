@@ -54,8 +54,8 @@ var FormControlsClient = {
 
                             message.fire({
                                 type: 'success',
-                                title: 'Success',
-                                text: "Case transfer between court successfully.",
+                                title: translations['success'] || 'Éxito',
+                                text: translations['case_transfer_success'] || 'Transferencia de caso entre tribunales realizada correctamente.',
                             });
 
                             t.ajax.reload();

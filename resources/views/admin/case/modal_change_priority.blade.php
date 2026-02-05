@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Modal Header</h4>
+    <h4 class="modal-title">{{ __('frontend.case_priority') }}</h4>
 </div>
 <form method="post" class="" id="form_case_imp" name="form_case_imp">
     <input type="hidden" id="id" name="id" value="{{$case->id}}">

@@ -1,6 +1,20 @@
 <div class="modal fade" id="addtag" role="dialog" aria-labelledby="addcategory" aria-hidden="true">
 
     <div class="modal-dialog" role="document">
+        <style>
+            /* Scoped modal styles for Add/Edit Role */
+            #addtag .modal-dialog { max-width: 680px; width: 90%; }
+            #addtag .modal-content { border-radius: 6px; overflow: hidden; }
+            #addtag .modal-header { padding: 14px 18px; border-bottom: 1px solid #e6e9ee; background: #fff; }
+            #addtag .modal-title { color: #2c3e50; font-weight: 600; margin: 0; }
+            #addtag .modal-body { padding: 18px; }
+            #addtag .modal-footer { padding: 12px 18px; border-top: 1px solid #e6e9ee; }
+            #addtag .form-control { height: 40px; border-radius: 3px; }
+            #addtag textarea.form-control { min-height: 90px; }
+            #addtag .btn-success { background: #2c3e50; border-color: #2c3e50; }
+            #addtag .btn-danger { background: #d9534f; border-color: #d43f3a; }
+            @media (max-width: 480px) { #addtag .modal-dialog { width: 95%; } }
+        </style>
         <form action="{{ route('role.store') }}" method="POST" id="roleForm" name="roleForm">
             @csrf()
             <div class="modal-content">

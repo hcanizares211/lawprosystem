@@ -17,6 +17,15 @@
         </div>
     </div>
 
+        <style>
+            .x_panel {border-radius: 6px;}
+            .x_content {padding: 18px;}
+            .page-title h3 {color:#2c3e50}
+            .btn-add-client{background:#fff;border-radius:6px;padding:8px 14px;border:1px solid #e6e6e6;color:#2c3e50}
+            .x_panel .form-group label {font-weight:600}
+            .form-group.pull-right {margin-top:10px}
+        </style>
+
         <div class="clearfix"></div>
     <form id="mail_setup" name="mail_setup" role="form" method="POST"
           action="{{ route('general-setting.update',$GeneralSettings->id) }}" enctype="multipart/form-data"
@@ -146,7 +155,7 @@
                                         <br>
 
                                         <img height="26" width="30"
-                                             src="{{asset('public/'.config('constants.FAVICON_FOLDER_PATH') .'/'. $GeneralSettings->favicon_img)}}">
+                                             src="{{asset(config('constants.FAVICON_FOLDER_PATH') .'/'. $GeneralSettings->favicon_img)}}">
                                     @endif
                                 </div>
 
@@ -164,7 +173,7 @@
                                         <br>
                                         <br>
                                         <img height="46" width="230"
-                                             src="{{asset('public/'.config('constants.LOGO_FOLDER_PATH') .'/'. $GeneralSettings->logo_img)}}">
+                                             src="{{asset(config('constants.LOGO_FOLDER_PATH') .'/'. $GeneralSettings->logo_img)}}">
                                     @endif
                                 </div>
                             </div>
@@ -172,10 +181,10 @@
 
                             <div class="form-group pull-right">
                                 <div class="col-md-12 col-sm-6 col-xs-12">
-                                    <button type="submit" class="btn btn-success" name="btn_add_smtp"><i
+                                        <button type="submit" class="btn-add-client" name="btn_add_smtp"><i
                                             class="fa fa-save"
                                             id="show_loader"></i>&nbsp;{{__('frontend.save')}}
-                                    </button>
+                                        </button>
                                 </div>
                             </div>
 
@@ -190,7 +199,8 @@
 
 @endsection
 @push('js')
-    <script src="{{asset('assets/admin/js/selectjs.js')}}"></script>
+    <script src="{{asset('assets/admin/vendors/select2/dist/js/i18n/es.js')}}"></script>
+    <script src="{{asset('assets/admin/js/selectjs.js')}}"></script></script>
     <script src="{{asset('assets/admin/js/jquery.checkImageSize.js')}}"></script>
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
     <script src="{{asset('assets/js/settings/general-setting-validation.js')}}"></script>

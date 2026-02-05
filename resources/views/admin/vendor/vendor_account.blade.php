@@ -10,6 +10,23 @@
 
 
         </div>
+        <style>
+            /* Scoped styles for vendor account list */
+            .page-title h3 { color: #2c3e50; font-weight: 600; }
+            .x_panel { border-radius: 6px; border: 1px solid #e6e9ee; box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
+            .x_panel .x_content { padding: 20px; background: #fff; }
+            .nav.nav-tabs.bar_tabs > li > a { color: #2c3e50; font-weight: 600; }
+            .nav.nav-tabs.bar_tabs > li.active > a, .nav.nav-tabs.bar_tabs > li.active > a:focus { background: #f7f7f7; border-color: #e6e9ee; }
+            table.table { width: 100%; }
+            table.table thead th { background: #2c3e50; color: #fff; font-weight: 600; padding: 12px; }
+            table.table tbody td { padding: 14px; vertical-align: middle; color: #6c6f73; }
+            .dataTables_wrapper .dataTables_paginate .paginate_button { background: #eee; border: none; }
+            .dataTables_wrapper .dataTables_paginate .paginate_button.current { background: #2c3e50; color: #fff !important; }
+            @media (max-width: 767px) {
+                .page-title h3 { font-size: 18px; }
+                table.table thead th { font-size: 12px; }
+            }
+        </style>
 
         <div class="clearfix"></div>
 

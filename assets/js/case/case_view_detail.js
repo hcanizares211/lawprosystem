@@ -13,7 +13,7 @@ function nextDateAdd(case_id) {
       });
 
       // show bootstrap modal
-      $(".modal-title").text("Add Next Date"); // Set Title to Bootstrap modal title
+      $(".modal-title").text(window.translations?.next_date_title || "Próxima Fecha"); // Set Title to Bootstrap modal title
     },
     error: function (jqXHR, textStatus, errorThrown) {
       alert("Error adding / update data");

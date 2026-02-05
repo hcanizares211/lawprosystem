@@ -3,7 +3,7 @@
         'name' => 'lawpro/system',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'f1a4b2ec3640bfb3774df3303b8ec0be2c3e2129',
+        'reference' => '4e7e171606054bd449935a143f788b883b2505f5',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -433,7 +433,7 @@
         'lawpro/system' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'f1a4b2ec3640bfb3774df3303b8ec0be2c3e2129',
+            'reference' => '4e7e171606054bd449935a143f788b883b2505f5',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

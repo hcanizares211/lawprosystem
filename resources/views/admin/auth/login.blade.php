@@ -32,9 +32,161 @@
         ]); ?>
     </script>
     <style type="text/css">
+        /* Modern login shell using existing palette (blue #2c3e50, gold accent #daa520, neutrals) */
+        body.login {
+            background: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .login_wrapper {
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .login-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 18px 38px rgba(44, 62, 80, 0.18);
+            padding: 32px 34px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.08), rgba(218, 165, 32, 0.08));
+            z-index: 0;
+        }
+
+        .login-card > * { position: relative; z-index: 1; }
+
+        .brand-mark {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .brand-mark .icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: #2c3e50;
+            color: #daa520;
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.25);
+            font-size: 34px;
+        }
+
+        .brand-title {
+            text-align: center;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 26px;
+            margin: 6px 0 2px;
+        }
+
+        .brand-subtitle {
+            text-align: center;
+            color: #74808e;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .language-switcher {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 6px;
+        }
+
+        .language-switcher a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(44, 62, 80, 0.08);
+            color: #2c3e50;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .language-switcher a:hover {
+            background: rgba(44, 62, 80, 0.14);
+            text-decoration: none;
+        }
+
         .login_content_btn a:hover {
             text-decoration: none;
         }
+
+        .form-control {
+            height: 48px;
+            border-radius: 10px;
+            border: 1px solid #d7dde4;
+            box-shadow: none;
+            padding: 12px 14px;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            border-color: #2c3e50;
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.15);
+        }
+
+        .input-group-addon {
+            border-radius: 0 10px 10px 0;
+            background: #f1f3f6;
+            border: 1px solid #d7dde4;
+            border-left: 0;
+            color: #2c3e50;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(135deg, #2c3e50, #243241);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            box-shadow: 0 10px 22px rgba(44, 62, 80, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .btn-login:hover {
+            background: #243241;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(44, 62, 80, 0.38);
+        }
+
+        .forgot-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .forgot-link:hover { text-decoration: none; }
+
+        .footer-copy {
+            text-align: center;
+            margin-top: 18px;
+            color: #7b8794;
+            font-weight: 600;
+        }
+
+        .help-block strong { color: #c0392b; }
     </style>
 </head>
 
@@ -44,80 +196,62 @@
         <a class="hiddenanchor" id="signin"></a>
 
         <div class="login_wrapper">
-            <div class="animate form login_form">
-                <section class="login_content">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/login') }}">
-                        {{ csrf_field() }}
+            <div class="login-card">
+                <div class="language-switcher">
+                    @if ($current_locale == 'es')
+                        <a href="{{ route('language.switch', 'en') }}"><i class="fa fa-globe"></i> English</a>
+                    @else
+                        <a href="{{ route('language.switch', 'es') }}"><i class="fa fa-globe"></i> Español</a>
+                    @endif
+                </div>
 
+                <div class="brand-mark">
+                    <div class="icon">
+                        <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="brand-title">{{ $image_logo->company_name ?? 'LAW PRO' }}</div>
+                <div class="brand-subtitle">{{ __('frontend.login.login_your_account') }}</div>
 
-                        {{-- Language switcher as a simple list item --}}
-                        <li class="language-switcher-item-simple">
-                            @if ($current_locale == 'es')
-                                <a href="{{ route('language.switch', 'en') }}">
-                                    <i class="fa fa-globe"></i> English
-                                </a>
-                            @else
-                                <a href="{{ route('language.switch', 'es') }}">
-                                    <i class="fa fa-globe"></i> Español
-                                </a>
-                            @endif
-                        </li>
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/login') }}">
+                    {{ csrf_field() }}
 
-                        <h1>{{ __('frontend.login.login') }}</h1>
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <input id="email" type="email" class="form-control" name="email"
+                            value="{{ old('email') }}" autofocus placeholder="{{ __('frontend.login.email') }}">
 
-                        @if ($image_logo->logo_img != '')
-                            <i class="fa fa-balance-scale" aria-hidden="true"
-                                style="margin-left: 5px; margin-right: 5px; font-size: 60px;"></i>
+                        @if ($errors->has('email'))
+                            <span class="help-block text-left">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
                         @endif
-                        <h2> {{ __('frontend.login.login_your_account') }} </h2>
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input id="email" type="email" class="form-control" name="email"
-                                value="{{ old('email') }}" autofocus placeholder="{{ __('frontend.login.email') }}">
+                    </div>
 
-                            @if ($errors->has('email'))
-                                <span class="help-block text-left">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="input-group">
+                            <input id="password" type="password" class="form-control" name="password"
+                                autocomplete="off" placeholder="{{ __('frontend.login.password') }}">
+
+                            <span class="input-group-addon" style="cursor: pointer;">
+                                <i class="fa fa-eye" aria-hidden="true" id="togglePassword"></i>
+                            </span>
                         </div>
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <div class="input-group">
-                                <input id="password" type="password" class="form-control" name="password"
-                                    autocomplete="off" placeholder="{{ __('frontend.login.password') }}">
+                        @if ($errors->has('password'))
+                            <span class="help-block text-left" style="display: block;">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 
-                                <span class="input-group-addon" style="cursor: pointer;">
-                                    <i class="fa fa-eye" aria-hidden="true" id="togglePassword"></i>
-                                </span>
-                            </div>
-                            @if ($errors->has('password'))
-                                <span class="help-block text-left" style="display: block;">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div>
-                            <button style="background-color: #daa520; color:aliceblue" type="submit"
-                                class="btn btn-default">
-                                {{ __('frontend.login.login_button') }}
-                            </button>
-                            <a style="font-size: 16px" class="reset_pass"
-                                href="{{ url('/admin/password/reset') }}">{{ __('frontend.login.forgot_password') }}</a>
-                        </div>
+                    <div>
+                        <button type="submit" class="btn btn-login">
+                            {{ __('frontend.login.login_button') }}
+                        </button>
+                        <a class="forgot-link" href="{{ url('/admin/password/reset') }}">{{ __('frontend.login.forgot_password') }}</a>
+                    </div>
 
-                        <div class="clearfix"></div>
-
-                        <div class="separator">
-
-                            <div class="clearfix"></div>
-                            <br />
-
-                            <div>
-
-                                <p style="font-size: 18px">{{ __('frontend.login.project_name') }}</p>
-                            </div>
-                        </div>
-                    </form>
-                </section>
+                    <div class="footer-copy">{{ __('frontend.login.project_name') }}</div>
+                </form>
             </div>
         </div>
     </div>

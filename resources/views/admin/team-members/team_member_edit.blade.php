@@ -39,7 +39,7 @@
                                             <div class="file-tab">
                                                 @if($users->profile_img!='')
                                                     <img id="crop_image"
-                                                         src='{{asset('public/'.config('constants.CLIENT_FOLDER_PATH') .'/'. $users->profile_img)}}'
+                                                         src='{{asset(config('constants.CLIENT_FOLDER_PATH') .'/'. $users->profile_img)}}'
                                                          width='100px' height='100px'
                                                          class="crop_image_img"
                                                     >
@@ -48,7 +48,7 @@
                                                         <input type="checkbox" value="Yes" name="is_remove_image"
                                                                id="is_remove_image">&nbsp;{{__('frontend.remove_feature_image')}}</label>
                                                 @else
-                                                    <img id="demo_profile" src="{{asset('public/upload/profile.png')}}"
+                                                    <img id="demo_profile" src="{{asset('upload/profile.png')}}"
                                                          width='100px' height='100px'
                                                          class="demo_profile"
                                                     >

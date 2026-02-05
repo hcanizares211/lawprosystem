@@ -16,13 +16,13 @@ return [
     'ADMIN_PAGE_COURT' => 'Court |',
     'ADMIN_PAGE_CASE_STATUS' => 'Case Status |',
     'ADMIN_PAGE_CASE_JUDGE' => 'Judge |',
-    'CLIENT_FOLDER_PATH' => '/upload/profile',
+    'CLIENT_FOLDER_PATH' => 'upload/profile',
     'CLIENT_PASSWORD_FOR_JR_ADVO' => 'jr.advo@#123',
     'TRIAL_DAY' => '14',
     'INVITATION_TOKEN_HOURS' => '48',
-    'BLOG_FOLDER_PATH' => '/images/blog',
+    'BLOG_FOLDER_PATH' => 'images/blog',
     'ADVOCATE_URL' => 'http://www.advocatesdiary.in',
-    'LOGO_FOLDER_PATH' => '/upload/logo',
-    'FAVICON_FOLDER_PATH' => '/upload/favicon',
+    'LOGO_FOLDER_PATH' => 'upload/logo',
+    'FAVICON_FOLDER_PATH' => 'upload/favicon',
 
 ];

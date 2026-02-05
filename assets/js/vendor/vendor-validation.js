@@ -125,8 +125,25 @@ jQuery(document).ready(function () {
             $(this).addClass('fade-in-info').slideDown();
         },
         hide: function (deleteElement) {
-            if (confirm('Are you sure you want to delete this element?')) {
-                $(this).slideUp(deleteElement);
+            var $item = $(this);
+            if (window.Swal) {
+                Swal.fire({
+                    title: '¿Está seguro?',
+                    text: '¿Está seguro de que desea eliminar este elemento?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Aceptar',
+                    cancelButtonText: 'Cancelar',
+                    reverseButtons: true
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        $item.slideUp(deleteElement);
+                    }
+                });
+            } else {
+                if (confirm('Are you sure you want to delete this element?')) {
+                    $item.slideUp(deleteElement);
+                }
             }
         },
         isFirstItemUndeletable: false

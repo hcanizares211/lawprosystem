@@ -4,6 +4,23 @@
 
 @section('content')
 
+<style>
+/* Case form improved styles */
+.page-title { padding: 18px 20px; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom:18px; }
+.page-title h3 { margin:0; color:#2c3e50; font-weight:600; }
+.x_panel { border-radius: 10px; box-shadow: 0 6px 24px rgba(19,35,47,0.04); border:1px solid #eef1f3; overflow: visible; }
+.x_title { padding: 18px 22px; border-bottom:1px solid #edf1f3; background: #fafbfc; }
+.x_title h2 { margin:0; color:#2c3e50; font-size:16px; font-weight:600; }
+.x_content { padding: 20px 22px; background: #fff; }
+.form-group label { color:#2c3e50; font-weight:600; }
+.form-control { border-radius:6px; border:1px solid #e6ebef; padding:9px 12px; }
+.repeater .btn-add-client { background:#ffffff; color:#2c3e50; border:1px solid rgba(44,62,80,0.06); padding:8px 12px; border-radius:8px; display:inline-flex; align-items:center; gap:8px; }
+.btn-save { background:#28a745; color:#fff; border:none; padding:10px 18px; border-radius:8px; }
+.btn-cancel { background:#e74c3c; color:#fff; border:none; padding:10px 18px; border-radius:8px; }
+.case-margin-top-23 { margin-top:8px; }
+@media (max-width:767px){ .x_title { padding:12px 14px } .x_content { padding:12px 14px } }
+</style>
+
     <div class="page-title">
         <div class="title_left">
             <h3>{{ __('frontend.add_case') }}</h3>
@@ -118,7 +135,7 @@
                                 </div>
                             </div>
                             <button data-repeater-create type="button" value="Add New"
-                                class="btn btn-success waves-effect waves-light btn btn-success-edit" type="button">
+                                class="btn btn-add-client waves-effect waves-light" type="button">
                                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;{{ __('frontend.add_more') }}
                             </button>
                         </div>
@@ -399,10 +416,10 @@
                 <div class="col-md-12 col-sm-6 col-xs-12">
 
 
-                    <a class="btn btn-danger" href="{{ route('case-running.index') }}">{{ __('frontend.cancel') }}</a>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-save"
+                        <a class="btn btn-cancel" href="{{ route('case-running.index') }}">{{ __('frontend.cancel') }}</a>
+                        <button type="submit" class="btn btn-save"><i class="fa fa-save"
                             id="show_loader"></i>&nbsp;{{ __('frontend.save') }}
-                    </button>
+                        </button>
                 </div>
 
             </div>

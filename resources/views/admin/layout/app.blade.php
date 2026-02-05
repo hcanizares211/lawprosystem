@@ -11,10 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- @if ($image_logo->favicon_img != '')
-        <link rel="shortcut icon"
+    @if ($image_logo->favicon_img != '')
+        <link rel="shortcut icon" type="image/x-icon"
             href="{{ asset(config('constants.FAVICON_FOLDER_PATH') . '/' . $image_logo->favicon_img) }}">
-    @endif --}}
+    @endif
     <title>{{ $image_logo->company_name ?? 'Law Pro' }} | @yield('title')</title>
     <!-- Bootstrap -->
     <link href="{{ asset('assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -99,9 +99,9 @@
                             @if (Auth::guard('admin')->user())
                                 @if (Auth::guard('admin')->user()->profile_img != '')
                                     <img alt="" class="img-circle profile_img"
-                                        src='{{ asset('public/' . config('constants.CLIENT_FOLDER_PATH') . '/' . Auth::guard('admin')->user()->profile_img) }}'>
+                                        src='{{ asset(config('constants.CLIENT_FOLDER_PATH') . '/' . Auth::guard('admin')->user()->profile_img) }}'>
                                 @else
-                                    <img src="{{ asset('public/upload/user-icon-placeholder.png') }}"
+                                    <img src="{{ asset('upload/user-icon-placeholder.png') }}"
                                         class="img-circle profile_img" alt="">
                                 @endif
                             @endif
@@ -163,9 +163,14 @@
     <script src="{{ asset('assets/admin/js/jquery.validate.min.js') }}"></script>
 
     <script src="{{ asset('assets/admin/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendors/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js') }}"></script>
 
-
-    {{-- <script src="{{ asset('assets/admin/vendors/bootstrap-datepicker/js/bootstrap-datepicker.ar.min.js') }}"></script> --}}
+    <script>
+        // Set Spanish as default locale for all datepickers
+        if ($.fn.datepicker && $.fn.datepicker.dates && $.fn.datepicker.dates['es']) {
+            $.fn.datepicker.defaults.language = 'es';
+        }
+    </script>
 
 
 

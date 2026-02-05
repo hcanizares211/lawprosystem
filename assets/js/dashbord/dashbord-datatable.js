@@ -84,6 +84,7 @@ var DatatableRemoteAjaxDemo = function () {
             });
 
             $('#calendar_dashbors_case').fullCalendar({
+                locale: 'es',
                 eventLimit: true,
                 views: {
                     timeGrid: {
@@ -92,9 +93,14 @@ var DatatableRemoteAjaxDemo = function () {
                 },
                 // put your options and callbacks here
                 timezone: 'local',
-                left: 'Calendar',
-                center: '',
-                right: 'today prev,next',
+                buttonText: {
+                    today: 'hoy'
+                },
+                header: {
+                    left: 'title',
+                    center: '',
+                    right: 'today prev,next'
+                },
                 eventClick: function (calEvent, jsEvent, view) {
                     var id = calEvent.id;
 
@@ -169,10 +175,14 @@ function nextDateAdd(case_id) {
                 backdrop: false,
                 show: true,
             }); // show bootstrap modal
-            $('.modal-title').text('Add Next Date'); // Set Title to Bootstrap modal title
+            $('.modal-title').text(translations['add_next_date']); // Set Title to Bootstrap modal title
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('Error adding / update data');
+            if (typeof toastr !== 'undefined') {
+                toastr.error('Error al agregar/actualizar datos', 'Error');
+            } else {
+                alert('Error al agregar/actualizar datos');
+            }
         }
     });
 }
@@ -189,10 +199,14 @@ function transfer_case(case_id) {
                 backdrop: false,
                 show: true,
             }); // show bootstrap modal
-            $('.modal-title').text('Case Transfer'); // Set Title to Bootstrap modal title
+            $('.modal-title').text(translations['case_transfer']); // Set Title to Bootstrap modal title
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('Error adding / update data');
+            if (typeof toastr !== 'undefined') {
+                toastr.error('Error al agregar/actualizar datos', 'Error');
+            } else {
+                alert('Error al agregar/actualizar datos');
+            }
         }
     });
 }

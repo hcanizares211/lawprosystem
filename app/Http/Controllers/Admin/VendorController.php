@@ -298,8 +298,11 @@ class VendorController extends Controller
         if ($client->save()) {
             $statuscode = 200;
         }
-        $status = $request->status == 'true' ? 'active' : 'deactivate';
-        $message = 'Financial status ' . $status . ' successfully.';
+        if ($request->status == 'true') {
+            $message = __('backend.financial_activated_successfully');
+        } else {
+            $message = __('backend.financial_deactivated_successfully');
+        }
 
         return response()->json([
             'success' => true,

@@ -4,6 +4,23 @@
 
 @section('content')
 
+<style>
+    /* Case edit page: unify blue theme, panel and form styles */
+    .page-title h3 { color:#2c3e50; font-weight:600 }
+    .x_panel { border-radius:8px; box-shadow:0 1px 3px rgba(44,62,80,0.06); border:1px solid rgba(44,62,80,0.06); }
+    .x_panel .x_title { background: linear-gradient(90deg,#2c3e50,#2c3e50); color:#fff; padding:12px 16px; border-top-left-radius:8px; border-top-right-radius:8px }
+    .x_panel .x_title h2 { color:#fff; margin:0; font-size:16px; font-weight:600 }
+    .x_panel .x_content { padding:18px }
+    label { color:#2c3e50; font-weight:600 }
+    .form-control { height:40px; border-radius:4px }
+    textarea.form-control { min-height:90px; padding:10px }
+    .btn-success { background:#2c3e50; border-color:#233644 }
+    .btn-danger { background:#e05a4f; border-color:#c44437 }
+    .btn-success-edit { background:#2c3e50; border-color:#233644; color:#fff }
+    .repeater .border-addmore { padding:12px; border:1px solid rgba(0,0,0,0.04); border-radius:6px; margin-bottom:12px }
+    @media (max-width:767px){ .col-md-6, .col-md-4, .col-md-3, .col-md-12 { width:100%; float:none } }
+</style>
+
     <div class="page-title">
         <div class="title_left">
             <h3>{{__('frontend.edit_case')}}</h3>
@@ -428,9 +445,9 @@
 {{-- START: Added code to pass case translations --}}
     <script>
         // Use translations from 'backend.case' keys
-        var caseTranslations = @json(__('backend.case'));
-
-        // If you created case.php, use: var caseTranslations = @json(__('case'));
+        var caseValidationData = @json(__('backend.case'));
+        // Backwards-compatible alias
+        var caseTranslations = caseValidationData;
 
         // Optionally pass the current language if needed for datepicker/select2 JS logic
         var currentLang = '{{ app()->getLocale() }}';

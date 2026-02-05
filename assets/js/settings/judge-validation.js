@@ -103,6 +103,6 @@ jQuery(document).ready(function () {
 
     $(".case_type").select2({
         allowClear: true,
-        placeholder: 'Select Case Type'
+        placeholder: 'Seleccionar Tipo de Caso'
     });
 });

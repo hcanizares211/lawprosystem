@@ -11,6 +11,27 @@
 
     </div>
 
+        <style>
+                /* Scoped styles for vendor detail page */
+                .page-title h3 { color: #2c3e50; font-weight: 600; }
+                .page-title h3 span { color: #2c3e50; font-weight: 600; }
+                .x_panel { border-radius: 6px; border: 1px solid #e6e9ee; box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
+                .x_panel .x_content { padding: 24px; background: #fff; }
+                .nav.nav-tabs.bar_tabs > li > a { color: #2c3e50; font-weight: 600; }
+                .nav.nav-tabs.bar_tabs > li.active > a, .nav.nav-tabs.bar_tabs > li.active > a:focus { background: #f7f7f7; border-color: #e6e9ee; }
+                .part p { margin: 0; color: #6c6f73; }
+                .x_content .col-md-5 p b { color: #2c3e50; font-weight: 600; }
+                .divider { display: block; height: 1px; background: #eef0f2; margin: 12px 0; }
+                /* two-column detail alignment */
+                .x_content .row { margin-bottom: 8px; }
+                /* make sure long addresses wrap */
+                .part p { word-break: break-word; }
+                /* responsive tweaks */
+                @media (max-width: 767px) {
+                        .x_content .col-md-6 { width: 100%; float: none; }
+                }
+        </style>
+
     <div class="clearfix"></div>
 
     <div class="row">

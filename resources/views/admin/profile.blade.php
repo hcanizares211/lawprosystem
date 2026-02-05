@@ -69,7 +69,7 @@
                                                             <div class="col-md-12 text-center dimage">
                                                                 @if ($users->profile_img != '')
                                                                     <img id="crop_image"
-                                                                        src='{{ asset('public/' . config('constants.CLIENT_FOLDER_PATH') . '/' . $users->profile_img) }}'
+                                                                        src='{{ asset(config('constants.CLIENT_FOLDER_PATH') . '/' . $users->profile_img) }}'
                                                                         width='100px' height='100px'
                                                                         class="crop_image_profile">
                                                                     <div class="contct-info">
@@ -81,7 +81,7 @@
                                                                     </div>
                                                                 @else
                                                                     <img id="demo_profile"
-                                                                        src='{{ asset('public/upload/profile.png') }}'
+                                                                        src='{{ asset('upload/profile.png') }}'
                                                                         width='100px' height='100px'
                                                                         class="crop_image_profile">
                                                                 @endif

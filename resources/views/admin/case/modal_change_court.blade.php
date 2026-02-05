@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Modal Header</h4>
+    <h4 class="modal-title">{{ __('frontend.case_transfer') }}</h4>
 </div>
 <form id="case_transfer" name="case_transfer" role="form" method="POST" action="{{ url('admin/transferCaseCourt')}}">
     {{ csrf_field() }}

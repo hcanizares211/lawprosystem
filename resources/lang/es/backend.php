@@ -89,6 +89,10 @@ return [
         'ph_nothing_selected' => 'Nada seleccionado',
     ],
 
+    /* Mensajes de estado para Financiero (Vendor) */
+    'financial_activated_successfully' => 'Estado financiero activado correctamente.',
+    'financial_deactivated_successfully' => 'Estado financiero desactivado correctamente.',
+
 
     'party_advocate1'      => 'Por favor ingrese el nombre del abogado.',
 
@@ -324,6 +328,8 @@ return [
     'client_deleted_successfully' => 'Cliente eliminado exitosamente',
     'team_member_created_successfully' => 'Miembro del equipo creado exitosamente',
     'account_setup_successfully' => 'Cuenta configurada exitosamente',
+        'client_activated_successfully' => 'Cliente activado correctamente',
+        'client_deactivated_successfully' => 'Cliente desactivado correctamente',
     'team_member_updated_successfully' => 'Miembro del equipo actualizado exitosamente',
     'cannot_delete_team_member_used' => 'No puede eliminar este miembro del equipo porque está en uso en otros módulos',
     'team_member_deleted_successfully' => 'Miembro del equipo eliminado exitosamente',

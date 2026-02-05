@@ -34,7 +34,7 @@ z
                                         <div class="imageupload">
                                             <div class="file-tab">
 
-                                                <img id="demo_profile" src="{{ asset('public/upload/profile.png') }}"
+                                                <img id="demo_profile" src="{{ asset('upload/profile.png') }}"
                                                     width='100px' height='100px' class="demo_profile">
 
                                                 <div id="upload-demo" class="upload-demo-img"></div>

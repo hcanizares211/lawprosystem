@@ -13,8 +13,9 @@ return [
 
 
     'add_next_date' => 'Add Next Date',
-    'case_transfer' => 'Case Transfer',
+    'case_transfer' => 'Transferencia de Caso',
     'no' => 'No', // Assuming ':' is part of layout
+        'case_transfer_success' => 'Case transfer between courts successfully.',
     'case' => 'Case', // Assuming ':' is part of layout
     'assign_to' => 'Assign To',
     'court' => 'Court', // Assuming ':' is part of layout
@@ -65,6 +66,7 @@ return [
     'case_status_management' => 'Case Status Management',
     'tax_management' => 'Tax Management',
     'add_tax' => 'Add Tax',
+    'no_notification' => "You don't have any notification",
     'company_name' => 'Company Name',
     'pincode' => 'Pincode',
     'favicon' => 'favicon',
@@ -84,6 +86,7 @@ return [
     'year_based' => 'Year Based',
     'predefine_client_note' => 'Predefine Client Note',
     'predefine_terms_condition' => 'Predefine Terms & Condition',
+    'terms_conditions' => 'Terms & Conditions',
 
     'my_account' => 'My Account',
     'update_profile' => 'Update Profile',

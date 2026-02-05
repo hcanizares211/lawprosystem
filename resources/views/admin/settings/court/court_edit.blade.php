@@ -1,6 +1,21 @@
 <div class="modal fade" id="addtag" role="dialog" aria-labelledby="addcategory" aria-hidden="true">
 
     <div class="modal-dialog" role="document">
+        <style>
+            /* Scoped edit modal styles */
+            #addtag .modal-dialog { max-width: 720px; width: 92%; }
+            #addtag .modal-content { border-radius: 8px; overflow: hidden; }
+            #addtag .modal-header { padding: 14px 18px; border-bottom: 1px solid #e6e9ee; background: #fff; }
+            #addtag .modal-title { color: #2c3e50; font-weight: 600; margin: 0; }
+            #addtag .modal-body { padding: 18px; }
+            #addtag .modal-footer { padding: 12px 18px; border-top: 1px solid #e6e9ee; }
+            #addtag .form-control { height: 42px; border-radius: 4px; }
+            #addtag select.form-control { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #7f8c8d 50%), linear-gradient(135deg, #7f8c8d 50%, transparent 50%); background-position: right 12px top 55%, right 6px top 55%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; }
+            #addtag .btn-success { background: linear-gradient(135deg,#26a69a 0%,#00897b 100%); border-color: #00897b; color: #fff; }
+            #addtag .btn-danger { background: #d9534f; border-color: #d43f3a; color: #fff; }
+            @media (max-width: 480px) { #addtag .modal-dialog { width: 95%; } }
+        </style>
+
         <form action="{{route('court.update',$court->id)}}" method="POST" id="tagForm" name="tagForm">
             <input type="hidden" id="id" name="id" value="{{$court->id ?? ''}}">
             @csrf()

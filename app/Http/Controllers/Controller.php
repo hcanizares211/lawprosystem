@@ -7,9 +7,10 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Model\AllTax;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use App\Admin;
 
 class Controller extends BaseController
 {
@@ -180,8 +181,14 @@ class Controller extends BaseController
             $lableName = 'Appointments';
             $name = $record->is_active;
         } else {
-
-
+            // Define table_field based on table name
+            $table_field = 'name'; // default field
+            if (property_exists($record, 'name')) {
+                $table_field = 'name';
+            } elseif (property_exists($record, 'title')) {
+                $table_field = 'title';
+            }
+            
             $name = $record->$table_field;
             $lableName = str_replace('_', ' ', $table);
         }

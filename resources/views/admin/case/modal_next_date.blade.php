@@ -100,6 +100,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        // Asegura el título en español al cargar el modal
+        $('#modal-next-date').find('.modal-title').text("{{ __('frontend.add_next_date') }}");
         $('.select2').select2();
         var selected_option = $('#case_status option:selected').attr('myvalue');
         if(selected_option == 'Disposed' || selected_option == 'Closed'){
@@ -157,12 +159,12 @@
 
             },
             messages: {
-                case_status:"Please select case status.",
+                case_status:"Por favor selecciona el estado del caso.",
                 next_date: {
-                    required:"Please select next date."
+                    required:"Por favor selecciona la próxima fecha."
                 },
-                decision_date: "Please select decision date.",
-                nature_disposal: "Please enter nature of disposal.",
+                decision_date: "Por favor selecciona la fecha de decisión.",
+                nature_disposal: "Por favor ingresa la naturaleza de la resolución.",
             },
             errorPlacement: function (error, element) {
                 error.appendTo(element.parent()).addClass('text-danger');
@@ -210,16 +212,16 @@
                             if(decision != ''){
                                 message.fire({
                                     type: 'success',
-                                    title: 'Success' ,
-                                    text:"Case disposed / closed successfully.",
+                                    title: 'Éxito' ,
+                                    text:"Caso cerrado correctamente.",
                                 });
                                 // alert("Case disposed / closed successfully.");
                                 // success_massage('Case disposed / closed successfully.');
                             }else{
                                 message.fire({
                                     type: 'success',
-                                    title: 'Success' ,
-                                    text:"Case next date added successfully.",
+                                    title: 'Éxito' ,
+                                    text:"Próxima fecha agregada correctamente.",
                                 });
 
                                 // alert("Case next date added successfully.");

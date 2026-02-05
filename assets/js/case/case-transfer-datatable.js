@@ -17,6 +17,14 @@ var DatatableRemoteAjaxDemo = function () {
         t = $('#case_transfer_list').DataTable({
             "processing": true,
             "serverSide": true,
+            "pagingType": "simple",
+            "language": {
+                "paginate": { "previous": "Anterior", "next": "Siguiente" },
+                "search": "Buscar:",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                "lengthMenu": "Mostrar _MENU_ entradas",
+                "emptyTable": "No hay datos disponibles"
+            },
             "oLanguage": {sProcessing: "<div class='loader-container'><div id='loader'></div></div>"},
             "order": [[0, "desc"]],
             "ajax": {
@@ -62,10 +70,8 @@ jQuery(document).ready(function () {
 
 
 function showRemark(bussinessOnDate, remarks) {
-
-    $('.modal-body').html(remarks);
-
+    var baseTitle = $('.modal-title').text().trim() || 'Remark of Business on Date';
+    $('.modal-body').html(remarks || 'N/A');
+    $('.modal-title').text(baseTitle + ' : ' + bussinessOnDate);
     $('#remarkModal').modal('show'); // show bootstrap modal
-
-    $('.modal-title').text('Remark of Business on Date : ' + bussinessOnDate); // Set Title to Bootstrap modal title
 }

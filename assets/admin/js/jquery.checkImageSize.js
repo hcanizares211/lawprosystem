@@ -54,14 +54,22 @@
 		                if (imgWidth < minWidth || imgHeight < minHeight) {
 		                    validImage = false;
 		                    if (opts.showError) {
-		                    	alert('Please select an image with at-least ' + minWidth + 'px width & ' + minHeight + 'px height!');
+		                    	if (typeof toastr !== 'undefined') {
+		                    	    toastr.error('Por favor seleccione una imagen de al menos ' + minWidth + 'px de ancho y ' + minHeight + 'px de alto.', 'Error de Imagen');
+		                    	} else {
+		                    	    alert('Por favor seleccione una imagen de al menos ' + minWidth + 'px de ancho y ' + minHeight + 'px de alto.');
+		                    	}
 		                    }
 		                }
 
 		                if (imgWidth > maxWidth || imgHeight > maxHeight) {
 		                    validImage = false;
 		                    if (opts.showError) {
-		                    	alert('Please select an image of maximum ' + maxWidth + 'px width & ' + maxHeight + 'px height!');
+		                    	if (typeof toastr !== 'undefined') {
+		                    	    toastr.error('Por favor seleccione una imagen de máximo ' + maxWidth + 'px de ancho y ' + maxHeight + 'px de alto.', 'Error de Imagen');
+		                    	} else {
+		                    	    alert('Por favor seleccione una imagen de máximo ' + maxWidth + 'px de ancho y ' + maxHeight + 'px de alto.');
+		                    	}
 		                    }
 		                }
 

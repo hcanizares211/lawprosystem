@@ -3,10 +3,192 @@
 
 @section('content')
 
+<style>
+.page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2c3e50;
+    color: white;
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.3);
+}
+
+.page-title h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.x_panel {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: none;
+    overflow: visible;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #ecf0f1;
+    padding: 0 20px;
+    background: #f8f9fa;
+}
+
+.nav-tabs > li {
+    margin-bottom: -2px;
+}
+
+.nav-tabs > li > a {
+    border: none !important;
+    border-radius: 0;
+    padding: 16px 26px;
+    font-weight: 600;
+    color: #7f8c8d;
+    transition: all 0.3s;
+    position: relative;
+    font-size: 14px;
+}
+
+.nav-tabs > li > a:hover {
+    background: transparent;
+    color: #2c3e50;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #2c3e50 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.nav-tabs > li.active > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #2c3e50;
+    border-radius: 3px 3px 0 0;
+}
+
+#case_list thead tr {
+    background: #2c3e50;
+}
+
+#case_list thead th {
+    color: white !important;
+    font-weight: 600;
+    padding: 14px 10px !important;
+    border: none !important;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+#case_list tbody tr {
+    border-bottom: 1px solid #ecf0f1;
+    transition: all 0.2s;
+}
+
+#case_list tbody tr:hover {
+    background: #f8f9fa;
+    transform: scale(1.005);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+#case_list tbody td {
+    padding: 14px 10px !important;
+    vertical-align: middle;
+    font-size: 13px;
+}
+
+.btn-primary {
+    background: #ff9800;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 10px 18px;
+    box-shadow: 0 4px 12px rgba(255,152,0,0.35);
+}
+
+.btn-primary:hover {
+    background: #f57c00;
+}
+
+.btn-danger,
+.btn-success {
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 10px 16px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.dataTables_wrapper {
+    position: relative;
+}
+
+.dataTables_wrapper .dropdown-menu {
+    position: relative;
+    z-index: 10;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Mostrar solo botones Anterior/Siguiente en paginación */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    display: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next {
+    display: inline-block !important;
+    margin: 0 4px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous a,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next a {
+    border-radius: 6px;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover a,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next:hover a {
+    background: #e9ecef;
+    color: #2c3e50;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled a,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover a {
+    background: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+</style>
+
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>{{__('frontend.cases_management')}}</h3>
+                <h3><i class="fa fa-gavel"></i> {{__('frontend.cases_management')}}</h3>
             </div>
 
             <div class="title_right">
@@ -70,18 +252,18 @@
                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 
                                 <li role="presentation" class="{{(Request::is('admin/case-running'))?'active':''}} ">
-                                    <a href="{{url('admin/case-running')}}">{{__('frontend.running_cases')}}</a>
+                                    <a href="{{url('admin/case-running')}}"><i class="fa fa-play"></i> {{__('frontend.running_cases')}}</a>
                                 </li>
 
                                 <li role="presentation" class="{{(Request::is('admin/case-important'))?'active':''}} ">
-                                    <a href="{{url('admin/case-important')}}">{{__('frontend.important_cases')}}</a>
+                                    <a href="{{url('admin/case-important')}}"><i class="fa fa-star"></i> {{__('frontend.important_cases')}}</a>
                                 </li>
 
                                 <li role="presentation" class="{{(Request::is('admin/case-nb'))?'active':''}} ">
-                                    <a href="{{url('admin/case-nb')}}">{{__('frontend.no_board_cases')}}</a>
+                                    <a href="{{url('admin/case-nb')}}"><i class="fa fa-exclamation-circle"></i> {{__('frontend.no_board_cases')}}</a>
                                 </li>
                                 <li role="presentation" class="{{(Request::is('admin/case-archived'))?'active':''}} ">
-                                    <a href="{{url('admin/case-archived')}}">{{__('frontend.archived_cases')}}</a>
+                                    <a href="{{url('admin/case-archived')}}"><i class="fa fa-archive"></i> {{__('frontend.archived_cases')}}</a>
                                 </li>
 
                             </ul>

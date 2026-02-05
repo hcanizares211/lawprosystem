@@ -1,6 +1,20 @@
 <div class="modal fade" id="addtag" role="dialog" aria-labelledby="addcategory" aria-hidden="true">
 
     <div class="modal-dialog" role="document">
+        <style>
+            /* Scoped modal styles for Add Judge */
+            #addtag .modal-dialog { max-width: 680px; width: 90%; }
+            #addtag .modal-content { border-radius: 8px; overflow: hidden; }
+            #addtag .modal-header { padding: 14px 18px; border-bottom: 1px solid #e6e9ee; background: #fff; }
+            #addtag .modal-title { color: #2c3e50; font-weight: 600; margin: 0; }
+            #addtag .modal-body { padding: 18px; }
+            #addtag .modal-footer { padding: 12px 18px; border-top: 1px solid #e6e9ee; }
+            #addtag .form-control { height: 42px; border-radius: 4px; }
+            #addtag .btn-success { background: linear-gradient(135deg,#26a69a 0%,#00897b 100%); border-color: #00897b; color: #fff; }
+            #addtag .btn-danger { background: #d9534f; border-color: #d43f3a; color: #fff; }
+            @media (max-width: 480px) { #addtag .modal-dialog { width: 95%; } }
+        </style>
+
         <form action="{{ route('judge.store') }}" method="POST" id="tagForm" name="tagForm">
             @csrf()
             <div class="modal-content">

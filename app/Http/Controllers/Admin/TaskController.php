@@ -230,18 +230,18 @@ class TaskController extends Controller
 
             $taskPriority = $item->priority;
             $lableColor = '';
+            $taskPriorityLower = strtolower($taskPriority);
 
-
-            if ($taskPriority == 'Low') {
+            if ($taskPriorityLower == 'low') {
 
                 $lableColor = 'label label-primary';
-            } elseif ($taskPriority == 'medium') {
+            } elseif ($taskPriorityLower == 'medium') {
 
                 $lableColor = 'label label-info';
-            } elseif ($taskPriority == 'high') {
+            } elseif ($taskPriorityLower == 'high') {
 
                 $lableColor = 'label label-danger';
-            } elseif ($taskPriority == 'urgent') {
+            } elseif ($taskPriorityLower == 'urgent') {
 
                 $lableColor = 'label label-danger';
             }

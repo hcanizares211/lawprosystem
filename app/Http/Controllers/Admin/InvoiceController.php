@@ -295,7 +295,7 @@ class InvoiceController extends Controller
 
         $data['json_to_array'] = array();
 
-        $data['total_amount_world'] = $this->getIndianCurrency(round($data['invoice']->total_amount)) . " Only.";
+        $data['total_amount_world'] = ucfirst($this->getIndianCurrency(round($data['invoice']->total_amount)));
 
         if ($p == "view") {
             return view('admin.invoice.invoice_view', $data);
@@ -964,7 +964,7 @@ class InvoiceController extends Controller
         $data['tax_type'] = $data['invoice']->tax_type;
 
 
-        $data['total_amount_world'] = $this->getIndianCurrency($data['invoice']->total_amount) . " Only.";
+        $data['total_amount_world'] = ucfirst($this->getIndianCurrency($data['invoice']->total_amount));
 
 
         $pdf = PDF::loadView('pdf.invoice', $data);
@@ -1228,48 +1228,147 @@ class InvoiceController extends Controller
         $str = array();
         $words = array(
             0 => '',
-            1 => 'one',
-            2 => 'two',
-            3 => 'three',
-            4 => 'four',
-            5 => 'five',
-            6 => 'six',
-            7 => 'seven',
-            8 => 'eight',
-            9 => 'nine',
-            10 => 'ten',
-            11 => 'eleven',
-            12 => 'twelve',
-            13 => 'thirteen',
-            14 => 'fourteen',
-            15 => 'fifteen',
-            16 => 'sixteen',
-            17 => 'seventeen',
-            18 => 'eighteen',
-            19 => 'nineteen',
-            20 => 'twenty',
-            30 => 'thirty',
-            40 => 'forty',
-            50 => 'fifty',
-            60 => 'sixty',
-            70 => 'seventy',
-            80 => 'eighty',
-            90 => 'ninety'
+            1 => 'uno',
+            2 => 'dos',
+            3 => 'tres',
+            4 => 'cuatro',
+            5 => 'cinco',
+            6 => 'seis',
+            7 => 'siete',
+            8 => 'ocho',
+            9 => 'nueve',
+            10 => 'diez',
+            11 => 'once',
+            12 => 'doce',
+            13 => 'trece',
+            14 => 'catorce',
+            15 => 'quince',
+            16 => 'dieciséis',
+            17 => 'diecisiete',
+            18 => 'dieciocho',
+            19 => 'diecinueve',
+            20 => 'veinte',
+            21 => 'veintiuno',
+            22 => 'veintidós',
+            23 => 'veintitrés',
+            24 => 'veinticuatro',
+            25 => 'veinticinco',
+            26 => 'veintiséis',
+            27 => 'veintisiete',
+            28 => 'veintiocho',
+            29 => 'veintinueve',
+            30 => 'treinta',
+            40 => 'cuarenta',
+            50 => 'cincuenta',
+            60 => 'sesenta',
+            70 => 'setenta',
+            80 => 'ochenta',
+            90 => 'noventa',
+            100 => 'cien',
+            200 => 'doscientos',
+            300 => 'trescientos',
+            400 => 'cuatrocientos',
+            500 => 'quinientos',
+            600 => 'seiscientos',
+            700 => 'setecientos',
+            800 => 'ochocientos',
+            900 => 'novecientos'
         );
-        $digits = array('', 'hundred', 'thousand', 'lakh', 'crore');
-        while ($i < $digits_length) {
-            $divider = ($i == 2) ? 10 : 100;
-            $number = floor($no % $divider);
-            $no = floor($no / $divider);
-            $i += $divider == 10 ? 1 : 2;
-            if ($number) {
-                $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
-                $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
-                $str[] = ($number < 21) ? $words[$number] . ' ' . $digits[$counter] . $plural . ' ' . $hundred : $words[floor($number / 10) * 10] . ' ' . $words[$number % 10] . ' ' . $digits[$counter] . $plural . ' ' . $hundred;
-            } else $str[] = null;
+        
+        if ($no == 0) {
+            return 'cero dólares';
         }
-        $Rupees = implode('', array_reverse($str));
-        $paise = ($decimal) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
-        return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
+        
+        $result = '';
+        
+        // Millones
+        if ($no >= 1000000) {
+            $millions = floor($no / 1000000);
+            if ($millions == 1) {
+                $result .= 'un millón ';
+            } else {
+                $result .= $this->convertGroup($millions) . ' millones ';
+            }
+            $no = $no % 1000000;
+        }
+        
+        // Miles
+        if ($no >= 1000) {
+            $thousands = floor($no / 1000);
+            if ($thousands == 1) {
+                $result .= 'mil ';
+            } else {
+                $result .= $this->convertGroup($thousands) . ' mil ';
+            }
+            $no = $no % 1000;
+        }
+        
+        // Centenas, decenas y unidades
+        if ($no > 0) {
+            $result .= $this->convertGroup($no);
+        }
+        
+        $result = trim($result) . ' dólares';
+        
+        if ($decimal > 0) {
+            $result .= ' con ' . str_pad($decimal, 2, '0', STR_PAD_LEFT) . '/100';
+        }
+        
+        return $result;
+    }
+    
+    function convertGroup($number)
+    {
+        $words = array(
+            1 => 'uno', 2 => 'dos', 3 => 'tres', 4 => 'cuatro', 5 => 'cinco',
+            6 => 'seis', 7 => 'siete', 8 => 'ocho', 9 => 'nueve', 10 => 'diez',
+            11 => 'once', 12 => 'doce', 13 => 'trece', 14 => 'catorce', 15 => 'quince',
+            16 => 'dieciséis', 17 => 'diecisiete', 18 => 'dieciocho', 19 => 'diecinueve',
+            20 => 'veinte', 21 => 'veintiuno', 22 => 'veintidós', 23 => 'veintitrés',
+            24 => 'veinticuatro', 25 => 'veinticinco', 26 => 'veintiséis', 27 => 'veintisiete',
+            28 => 'veintiocho', 29 => 'veintinueve'
+        );
+        
+        $tens = array(
+            30 => 'treinta', 40 => 'cuarenta', 50 => 'cincuenta',
+            60 => 'sesenta', 70 => 'setenta', 80 => 'ochenta', 90 => 'noventa'
+        );
+        
+        $hundreds = array(
+            100 => 'ciento', 200 => 'doscientos', 300 => 'trescientos',
+            400 => 'cuatrocientos', 500 => 'quinientos', 600 => 'seiscientos',
+            700 => 'setecientos', 800 => 'ochocientos', 900 => 'novecientos'
+        );
+        
+        if ($number <= 29) {
+            return $words[$number] ?? '';
+        }
+        
+        if ($number < 100) {
+            $ten = floor($number / 10) * 10;
+            $unit = $number % 10;
+            return $tens[$ten] . ($unit > 0 ? ' y ' . $words[$unit] : '');
+        }
+        
+        $hundred = floor($number / 100) * 100;
+        $remainder = $number % 100;
+        
+        if ($number == 100) {
+            return 'cien';
+        }
+        
+        $result = $hundreds[$hundred];
+        
+        if ($remainder > 0) {
+            if ($remainder <= 29) {
+                $result .= ' ' . $words[$remainder];
+            } else {
+                $ten = floor($remainder / 10) * 10;
+                $unit = $remainder % 10;
+                $result .= ' ' . $tens[$ten] . ($unit > 0 ? ' y ' . $words[$unit] : '');
+            }
+        }
+        
+        return $result;
     }
 }

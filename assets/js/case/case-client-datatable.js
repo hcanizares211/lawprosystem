@@ -73,7 +73,7 @@ function nextDateAdd(case_id) {
         success: function (data) {
             $('#show_modal_next_date').html(data);
             $('#modal-next-date').modal('show'); // show bootstrap modal
-            $('.modal-title').text('Add Next Date'); // Set Title to Bootstrap modal title
+            $('.modal-title').text(window.translations?.next_date_title || 'Próxima Fecha'); // Set Title to Bootstrap modal title
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert('Error adding / update data');
@@ -104,7 +104,7 @@ function transfer_case(case_id) {
         success: function (data) {
             $('#show_modal_transfer').html(data);
             $('#modal-change-court').modal('show'); // show bootstrap modal
-            $('.modal-title').text('Case Transfer'); // Set Title to Bootstrap modal title
+            $('.modal-title').text(translations['case_transfer']); // Localized title
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert('Error adding / update data');

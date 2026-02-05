@@ -26,7 +26,7 @@
                     <td width="25%">
                         @if($setting->logo_img !='')
                       
-                            <img src="{{ asset('public/upload/lawlogo.png') }}">
+                            <img src="{{ public_path(config('constants.LOGO_FOLDER_PATH') .'/'. $setting->logo_img) }}">
                         @endif
                     </td>
                     <td width="75%" valign="top">
@@ -194,7 +194,7 @@
         <td>
             <table border="0" cellpadding="5" cellspacing="0" width="100%">
                 <tr>
-                    <td style="font-size: 11px;"><strong style="font-size:13px;">Terms & Conditions :</strong> <br/>
+                    <td style="font-size: 11px;"><strong style="font-size:13px;">{{__('frontend.terms_conditions')}} :</strong> <br/>
                         <ul>
                             @if(!empty($myTerm))
                                 @foreach($myTerm as $t)

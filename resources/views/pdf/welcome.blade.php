@@ -120,12 +120,12 @@ font-style:bold;
 </tr>
 @if($case->decision_date != '')
 <tr>
-<td class="heading3 " width="30%" style="text-align:left;border-right: none !important;">Decision Date </td>
+<td class="heading3 " width="30%" style="text-align:left;border-right: none !important;">{{__('frontend.decision_date')}} </td>
 <td class="heading3" width="70%" style="text-align:left;border-left: none !important;">:  @if(isset($case->decision_date) && !empty($case->decision_date))
 
-	 {{date(LogActivity::commonDateFromatType(),strtotime(LogActivity::commonDateFromat($case->decision_date)))}}
+ {{date(LogActivity::commonDateFromatType(),strtotime(LogActivity::commonDateFromat($case->decision_date)))}}
 
-  @endif</td>
+	@endif</td>
 </tr>
 @else
 <tr>
@@ -145,14 +145,14 @@ font-style:bold;
 
 @if($case->nature_disposal != '')
 <tr>
-<td class="heading3 " width="30%" style="text-align:left;border-right: none !important;">Nature of Disposal </td>
+<td class="heading3 " width="30%" style="text-align:left;border-right: none !important;">{{__('frontend.nature_of_disposal')}} </td>
 <td class="heading3" width="70%" style="text-align:left;border-left: none !important;">: {{$case->nature_disposal}}
 </td>
 </tr>
 @endif
 
 <tr>
-<td class="heading3 " width="30%" style="text-align:left;border-right: none !important;">Court Number and Judge </td>
+<td class="heading3 " width="30%" style="text-align:left;border-right: none !important;">{{__('frontend.court_number_and_judge')}} </td>
 <td class="heading3" width="70%" style="text-align:left;border-left: none !important;">:  @if(isset($case->court_no) && !empty($case->court_no)) {{$case->court_no}} @endif - @if(isset($case->judgeType) && !empty($case->judgeType)) {{$case->judgeType}} @endif
 </td>
 </tr>

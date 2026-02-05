@@ -19,11 +19,21 @@ var DatatableRemoteAjaxDemo = (function () {
       stateSave: true,
       lengthMenu: [10, 25, 50],
       responsive: true,
-      oLanguage: {
-        sProcessing:
-          "<div class='loader-container'><div id='loader'></div></div>",
+      pagingType: "simple",
+      order: [[0, "desc"]],
+      language: {
+        processing: "<div class='loader-container'><div id='loader'></div></div>",
+        search: "Buscar:",
+        lengthMenu: "Mostrar _MENU_ entradas",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+        infoEmpty: "Sin registros",
+        infoFiltered: "(filtrado de _MAX_ registros)",
+        zeroRecords: "No hay registros",
+        paginate: {
+          previous: "Anterior",
+          next: "Siguiente",
+        },
       },
-      width: 200,
       // "iDisplayLength": 2,
       ajax: {
         url: $("#Appointmentdatatable").attr("data-url"),
@@ -184,28 +194,28 @@ function ajaxindicatorstart(text) {
 
 function change_status(id, status, table) {
   $.confirm({
-    title: "Status Confirmation",
+    title: "Confirmación de Estado",
     content:
-      "Its smooth to do multiple confirms at a time. <br> Click confirm or cancel for another modal",
+      "Puede realizar múltiples confirmaciones a la vez. <br> Haga clic en continuar o cancelar",
     icon: "fa fa-question-circle",
     animation: "scale",
     closeAnimation: "scale",
     opacity: 0.5,
     buttons: {
       confirm: {
-        text: "Proceed",
+        text: "Continuar",
         btnClass: "btn-blue",
         action: function () {
           $.confirm({
-            title: "Are you sure you want to change status?",
+            title: "¿Está seguro de que desea cambiar el estado?",
             content:
-              "Critical actions can have multiple confirmations like this one.",
+              "Las acciones críticas pueden tener múltiples confirmaciones como esta.",
             icon: "fa fa-warning",
             animation: "scale",
             closeAnimation: "zoom",
             buttons: {
               confirm: {
-                text: "Yes, sure!",
+                text: "Sí, estoy seguro!",
                 btnClass: "btn-orange",
                 action: function () {
                   // ajax adding data to database
@@ -227,7 +237,7 @@ function change_status(id, status, table) {
                         message.fire({
                           type: "error",
                           title: "Error",
-                          text: "Problem in delete!!! Please try again.",
+                          text: "Problema al eliminar. Por favor, inténtelo de nuevo.",
                         });
                         var d = $("#Appointmentdatatable").DataTable();
                         d.destroy();
@@ -238,8 +248,8 @@ function change_status(id, status, table) {
                       else {
                         message.fire({
                           type: "success",
-                          title: "Scueess",
-                          text: "Status changed successfully.",
+                          title: "Éxito",
+                          text: "Estado cambiado exitosamente.",
                         });
                         var d = $("#Appointmentdatatable").DataTable();
                         d.destroy();
@@ -250,7 +260,11 @@ function change_status(id, status, table) {
                       }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                      alert("Error adding / update data");
+                      if (typeof toastr !== 'undefined') {
+                        toastr.error('Error al agregar/actualizar datos', 'Error');
+                      } else {
+                        alert('Error al agregar/actualizar datos');
+                      }
                     },
                   });
                 },

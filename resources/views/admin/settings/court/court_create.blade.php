@@ -1,6 +1,21 @@
 <div class="modal fade" id="addtag" role="dialog" aria-labelledby="addcategory" aria-hidden="true">
 
     <div class="modal-dialog" role="document">
+        <style>
+            /* Scoped modal styles */
+            #addtag .modal-dialog { max-width: 720px; width: 92%; }
+            #addtag .modal-content { border-radius: 8px; overflow: hidden; }
+            #addtag .modal-header { padding: 14px 18px; border-bottom: 1px solid #e6e9ee; background: #fff; }
+            #addtag .modal-title { color: #2c3e50; font-weight: 600; margin: 0; }
+            #addtag .modal-body { padding: 18px; }
+            #addtag .modal-footer { padding: 12px 18px; border-top: 1px solid #e6e9ee; }
+            #addtag .form-control { height: 42px; border-radius: 4px; }
+            #addtag select.form-control { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #7f8c8d 50%), linear-gradient(135deg, #7f8c8d 50%, transparent 50%); background-position: right 12px top 55%, right 6px top 55%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; }
+            #addtag .btn-success { background: linear-gradient(135deg,#26a69a 0%,#00897b 100%); border-color: #00897b; color: #fff; }
+            #addtag .btn-danger { background: #d9534f; border-color: #d43f3a; color: #fff; }
+            @media (max-width: 480px) { #addtag .modal-dialog { width: 95%; } }
+        </style>
+
         <form action="{{ route('court.store') }}" method="POST" id="tagForm" name="tagForm">
             @csrf()
             <div class="modal-content">
@@ -19,8 +34,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                             <label for="case_type">{{__('frontend.court_type')}}<span class="text-danger">*</span></label>
-                            <select class="form-control case_type selct2-width-100" id="court_type" name="court_type"
-                                    >
+                            <select class="form-control case_type selct2-width-100" id="court_type" name="court_type">
                                 <option value="">{{__('frontend.select_court_type')}}</option>
                                 @foreach($court_types as $type)
                                     <option value="{{$type->id}}">
@@ -32,7 +46,7 @@
 
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                             <label for="case_subtype">{{__('frontend.court')}} <span class="text-danger">*</span></label>
-                            <input type="text" placeholder="" class="form-control" id="court_name" name="court_name">
+                            <input type="text" placeholder="{{ __('frontend.select_court') }}" class="form-control" id="court_name" name="court_name">
                         </div>
                     </div>
 

@@ -108,6 +108,6 @@ jQuery(document).ready(function () {
     FormControlsClient.init();
     $(".case_type").select2({
         allowClear: true,
-        placeholder: 'Select Court'
+        placeholder: 'Seleccionar Tribunal'
     });
 });

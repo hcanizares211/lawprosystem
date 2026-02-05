@@ -333,6 +333,8 @@ return [
     'client_added_successfully' => 'Client added successfully',
     'client_updated_successfully' => 'Client updated successfully', // Normalized 'Update' to 'updated'
     'client_deleted_successfully' => 'Client deleted successfully',
+    'client_activated_successfully' => 'Client activated successfully',
+    'client_deactivated_successfully' => 'Client deactivated successfully',
     'team_member_created_successfully' => 'Team member created successfully',
     'account_setup_successfully' => 'Account setup successfully',
     'team_member_updated_successfully' => 'Team member updated successfully',
@@ -383,6 +385,10 @@ return [
     'vendor_added_successfully' => 'Financial added successfully',
     'vendor_updated_successfully' => 'Financial updated successfully', // Normalized 'update'
     'vendor_deleted_successfully' => 'Financial deleted successfully',
+
+    /* Financial (Vendor) status messages */
+    'financial_activated_successfully' => 'Financial status activated successfully.',
+    'financial_deactivated_successfully' => 'Financial status deactivated successfully.',
 
     'cannot_delete_role_has_permissions' => 'Cannot delete role with assigned permissions. Please remove permissions first.', // Reworded for clarity
     'cannot_delete_vendor_used' => 'You cannot delete financial because it is used in other module', // Corrected 'can not'

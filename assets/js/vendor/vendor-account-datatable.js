@@ -15,7 +15,20 @@ var DatatableRemoteAjaxDemo = function () {
             "processing": true,
             "serverSide": true,
             "order": [[0, "desc"]],
+            "pagingType": "simple",
             "oLanguage": {sProcessing: "<div class='loader-container'><div id='loader'></div></div>"},
+            "language": {
+                "search": "Buscar:",
+                "lengthMenu": "Mostrar _MENU_ entradas",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Siguiente"
+                },
+                "zeroRecords": "No hay registros",
+                "infoEmpty": "Sin registros",
+                "infoFiltered": "(filtrado de _MAX_ registros)"
+            },
             "ajax": {
                 "url": $('#VendorAccountDatatable').attr('data-url'),
                 "dataType": "json",

@@ -7,6 +7,23 @@
         'text' => __('frontend.back'),
     ])
     @endcomponent
+    <style>
+        /* Client edit: unify with blue theme and form styles */
+        .x_panel { border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid rgba(44,62,80,0.06); }
+        .x_panel .x_content { padding:18px }
+        label { color:#2c3e50; font-weight:600 }
+        .form-group { margin-bottom:14px }
+        .form-control { height:40px; border-radius:4px }
+        textarea.form-control { min-height:90px; padding:10px }
+        .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple { min-height:40px; border-radius:4px }
+        .selct2-width-100, .select-change, .city-select2, .state-select2, .country-select2 { width:100% }
+        .repeater .border-addmore { padding:12px; margin-bottom:12px; border:1px solid rgba(0,0,0,0.04); border-radius:6px }
+        .btn-success-edit { background:#2c3e50; border-color:#233644; color:#fff }
+        .form-group.pull-right .btn { border-radius:4px; padding:8px 14px; margin-left:8px }
+        .form-group.pull-right .btn-success { background:#2c3e50; border-color:#233644; color:#fff }
+        .form-group.pull-right .btn-danger { background:#e05a4f; border-color:#c44437; color:#fff }
+        @media (max-width:767px){ .col-md-3, .col-md-4, .col-md-6, .col-md-9 { width:100%; float:none } }
+    </style>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             @include('component.error')

@@ -36,7 +36,7 @@
 
         <div class="animate form login_form">
             <div class="text-center">
-                <img src="{{ asset('public/upload/lawlogo.png') }}" style="">
+                <img src="{{ asset('upload/lawlogo.png') }}" style="">
             </div>
             @yield('content')
         </div>

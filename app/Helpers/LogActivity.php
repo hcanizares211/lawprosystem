@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 use Illuminate\Support\Facades\Request;
-use App\LogActivity as LogActivityModel;
+use App\Model\LogActivity as LogActivityModel;
 
 use App\Model\CourtCase;
 use App\Model\AdvocateClient;
@@ -189,7 +189,7 @@ class LogActivity
 			$noRecMsg .='<li>
 							<a href="javascript:void(0);">
 								<div class="mesge">
-									<i class="fa fa-info fa-fw"></i> You dont`t have any notification
+									<i class="fa fa-info fa-fw"></i> '.addslashes(__('frontend.no_notification')).'
 								</div>
 							</a>
 						</li>';
@@ -264,7 +264,7 @@ class LogActivity
 				<span class="label label-primary">'.$caseCount.'</span>
 			</a>';
 		
-		$html .='<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">';
+		$html .='<ul id="menu1" class="dropdown-menu list-unstyled msg_list tasks-dropdown" role="menu" style="width:420px;max-height:420px;overflow:auto;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.15);padding:10px;">';
 		if (count($court_cases) > 0)
         {
 			foreach($court_cases as $court_case)
@@ -272,22 +272,24 @@ class LogActivity
 			$name = static::getAdvocateClientFullName($court_case->advo_client_id); 
 			$caseType = CaseType::select('case_type_name')->where('id',$court_case->case_types)->first();
 			 
-			$html .='<li>
-						<a href="'.url('admin/case-running/'.$court_case->id).'">
-							<div class="mesge">
-								<i class="fa fa-user"></i> '.$name.'&nbsp;'.$caseType->case_type_name.'/'.$court_case->registration_number.'
-							</div>
-						</a>
-					</li>';
+			$html .='<li style="margin-bottom:8px;">
+					<a href="'.url('admin/case-running/'.$court_case->id).'" style="display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:8px;background:#f8f9fa;color:#2c3e50;text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+						<span style="width:26px;height:26px;border-radius:50%;background:#2c3e50;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;">
+							<i class="fa fa-user"></i>
+						</span>
+						<span style="flex:1;font-weight:600;">'.$name.'</span>
+						<span style="color:#6c757d;font-size:13px;">'.$caseType->case_type_name.'/'.$court_case->registration_number.'</span>
+					</a>
+				</li>';
 			}	
-			$html .='<li>
-						<a href="'.url('admin/case-running/').'">
-							<div class="text-center link-block">
-								<strong>'.__('frontend.view_all_tasks').'</strong> &nbsp; <i class="fa fa-angle-right"></i>
-							</div>
-						</a>
+			$html .='<li style="margin-top:6px;">
+					<a href="'.url('admin/case-running/').'" style="display:block;text-decoration:none;">
+						<div class="text-center" style="padding:10px 12px;border-radius:8px;border:1px solid #2c3e50;color:#2c3e50;font-weight:700;box-shadow:0 1px 6px rgba(44,62,80,0.08);background:#f0f4f7;">
+							<span>'.__('frontend.view_all_tasks').'</span> &nbsp; <i class="fa fa-angle-right"></i>
+						</div>
+					</a>
 
-					</li>';
+				</li>';
 		}else{
 			$html .='<li>
 				<a href="javascript:void(0);">

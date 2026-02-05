@@ -20,7 +20,19 @@ var DatatableRemoteAjaxDemo = function () {
             "serverSide": true,
             // "responsive":true,
             "order": [[0, "desc"]],
-            "oLanguage": {sProcessing: "<div class='loader-container'><div id='loader'></div></div>"},
+            "language": {
+                "processing": "<div class='loader-container'><div id='loader'></div></div>",
+                "search": "Buscar:",
+                "lengthMenu": "Mostrar _MENU_ entradas",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                "infoEmpty": "Sin registros",
+                "infoFiltered": "(filtrado de _MAX_ registros)",
+                "zeroRecords": "No hay registros",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Siguiente"
+                }
+            },
             "ajax": {
                 "url": case_url,
                 "dataType": "json",
@@ -136,7 +148,7 @@ function nextDateAdd(case_id) {
         success: function (data) {
             $('#show_modal_next_date').html(data);
             $('#modal-next-date').modal('show'); // show bootstrap modal
-            $('.modal-title').text('Add Next Date'); // Set Title to Bootstrap modal title
+            $('.modal-title').text(window.translations?.next_date_title || 'Próxima Fecha'); // Set Title to Bootstrap modal title
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert('Error adding / update data');
@@ -167,7 +179,7 @@ function transfer_case(case_id) {
         success: function (data) {
             $('#show_modal_transfer').html(data);
             $('#modal-change-court').modal('show'); // show bootstrap modal
-            $('.modal-title').text('Case Transfer'); // Set Title to Bootstrap modal title
+            $('.modal-title').text(translations['case_transfer']); // Localized title
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert('Error adding / update data');

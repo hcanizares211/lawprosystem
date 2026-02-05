@@ -20,6 +20,25 @@
 
                     <div class="x_content">
 
+                        <style>
+                            /* Scoped styles for Add Vendor page */
+                            .page-title h3 { color: #2c3e50; font-weight: 600; }
+                            .x_panel { border-radius: 6px; border: 1px solid #e6e9ee; box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
+                            .x_panel .x_content { padding: 22px; background: #fff; }
+                            .x_panel .x_content .form-group label { color: #2c3e50; font-weight: 600; }
+                            .x_panel .x_content .form-control { height: 40px; border-radius: 3px; }
+                            .x_panel .x_content .form-control.select2-hidden-accessible + .select2-container { width: 100% !important; }
+                            .x_panel .x_content textarea.form-control { min-height: 90px; height: auto; }
+                            .form-group.pull-right .btn { min-width: 110px; }
+                            .btn-success { background: #2c3e50; border-color: #2c3e50; }
+                            .btn-danger { background: #d9534f; border-color: #d43f3a; }
+                            .title_right .btn { background: #2c3e50; border-color: #2c3e50; }
+                            .divider { height: 1px; background: #eef0f2; margin: 12px 0; }
+                            @media (max-width: 767px) {
+                                .form-group.pull-right { text-align: left; margin-top: 10px; }
+                            }
+                        </style>
+
                         <div class="row">
 
                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">

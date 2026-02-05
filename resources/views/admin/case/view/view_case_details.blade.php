@@ -2,6 +2,47 @@
 @section('title','Case List')
 @section('content')
 
+<style>
+    /* Case detail page: blue theme, rounded panels, improved tabs */
+    .x_panel {
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(44,62,80,0.08);
+        overflow: visible;
+        border: 1px solid rgba(44,62,80,0.06);
+    }
+    .x_title {
+        background: linear-gradient(90deg, #2c3e50 0%, #2c3e50 100%);
+        color: #fff;
+        padding: 14px 16px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .x_title h2 { margin: 0; font-size: 16px; font-weight:600 }
+    .panel_toolbox a { color: #fff !important; }
+    .nav-tabs > li > a {
+        color: #2c3e50;
+        border: none;
+        padding: 8px 14px;
+        margin-right: 6px;
+    }
+    .nav-tabs > li.active > a,
+    .nav-tabs > li > a:hover { background: rgba(44,62,80,0.06); border-radius: 6px; }
+    .countries_list table { width:100%; border-collapse: collapse; }
+    .countries_list td {
+        padding: 10px 8px;
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .countries_list td:first-child { color: #6c757d; width:45%; font-weight:500 }
+    .countries_list td:last-child { text-align:right; font-weight:600; color:#2c3e50 }
+    .btn-action-icons a { color: #2c3e50; margin-left:8px }
+    .case-meta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center }
+    @media (max-width:767px){
+        .countries_list td:first-child{display:block;width:100%;text-align:left}
+        .countries_list td:last-child{display:block;width:100%;text-align:left;padding-top:6px}
+    }
+</style>
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">

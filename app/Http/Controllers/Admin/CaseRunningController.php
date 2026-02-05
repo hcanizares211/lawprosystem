@@ -18,12 +18,10 @@ use App\Model\CasePartiesInvolves;
 use App\Model\ClientPartiesInvoive;
 use App\Model\GeneralSettings;
 use App\Admin;
-use Validator;
-// use DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-// use pdf;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Traits\DatatablTrait;
 use App\Helpers\LogActivity;
 
@@ -726,7 +724,7 @@ class CaseRunningController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -768,7 +766,7 @@ class CaseRunningController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -778,7 +776,7 @@ class CaseRunningController extends Controller
 
         $validatedData = $this->validator_case($input);
         $index = 0;
-        if ($validatedData->passes()) {
+        if (!$validatedData->fails()) {
 
             $case = new CourtCase();
 
@@ -861,11 +859,10 @@ class CaseRunningController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Validate case data.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param array $data
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator_case(array $data)
     {
@@ -896,7 +893,7 @@ class CaseRunningController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Request $request, $id)
     {
@@ -1009,7 +1006,7 @@ class CaseRunningController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -1074,7 +1071,7 @@ class CaseRunningController extends Controller
 
         $validatedData = $this->validator_case($input);
         $index = '0';
-        if ($validatedData->passes()) {
+        if (!$validatedData->fails()) {
             // $advocate_id = $this->getLoginUserId();
             $case = CourtCase::findorfail($id);
 
@@ -1265,7 +1262,7 @@ class CaseRunningController extends Controller
             'next_date' => 'sometimes',
         ]);
 
-        if ($validatedData->passes()) {
+        if (!$validatedData->fails()) {
 
             //Update caourt case table with latest status and next date
             $CourtCase = CourtCase::findorfail($request->case_id);
@@ -1693,7 +1690,7 @@ class CaseRunningController extends Controller
             'court_number' => 'required',
             'transfer_date' => 'required',
         ]);
-        if ($validatedData->passes()) {
+        if (!$validatedData->fails()) {
 
             $toCourt = $request->court_number;
             $CourtCase = CourtCase::findorfail($request->case_id);

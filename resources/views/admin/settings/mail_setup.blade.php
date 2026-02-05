@@ -103,6 +103,7 @@
 
 @endsection
 @push('js')
+    <script src="{{ asset('assets/admin/vendors/select2/dist/js/i18n/es.js') }}"></script>
     <script src="{{ asset('assets/admin/js/selectjs.js') }}"></script>
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
     <script src="{{ asset('assets/js/settings/mail-setup-validation.js') }}"></script>

@@ -13,6 +13,17 @@
             {{__('frontend.status')}}
         @endcomponent
 
+        <style>
+            .x_panel {border-radius: 6px;}
+            .x_content {padding: 18px;}
+            .page-title h3 {color:#2c3e50}
+            .btn-add-client{background:#fff;border-radius:6px;padding:8px 14px;border:1px solid #e6e6e6;color:#2c3e50}
+            #tagDataTable thead tr{background:#2c3e50}
+            #tagDataTable thead th{color:#fff}
+            .dataTables_wrapper .dataTables_paginate ul.pagination > li{display:none !important}
+            #tagDataTable_previous, #tagDataTable_next{display:inline-block !important}
+            .x_panel .table tbody tr td{vertical-align:middle}
+        </style>
 
         <div class="clearfix"></div>
 
